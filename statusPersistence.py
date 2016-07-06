@@ -37,12 +37,15 @@ subprocess.call('rm roughLogs.txt', shell=True)
 interimList = []
 count = 0
 while count < (len(list) - 1):
-    date = list[count][0]
-    ip = list[count][1]
-    pid = list[count][2].split('.log:')[0]
-    reason = list[count][2].split('.log:')[1]
-    interimList.append([date,ip,pid,reason])
-    count +=1
+    if len(list[count]) > 3:
+        count += 1
+    else:
+        date = list[count][0]
+        ip = list[count][1]
+        pid = list[count][2].split('.log:')[0]
+        reason = list[count][2].split('.log:')[1]
+        interimList.append([date,ip,pid,reason])
+        count +=1
 
 print ""
 print ''' 
