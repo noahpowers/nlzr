@@ -1,0 +1,2 @@
+## the PowerShell command below recursively searches through folders for specific filetypes, then looks inside discovered files for SSN #'s.
+Get-ChildItem -Recurse -Include *.txt,*.rtf,*tax*,*credit*,*card* -Exclude *.exe,*.dll,*mui,*.msi,*System32*,*Python27*,*EULA* -ErrorAction "SilentlyContinue" | ?{ findstr.exe /mprc:. $_.VersionInfo.FileName } | Select-String "[0-9]{3}[-| ][0-9]{2}[-| ][0-9]{4}"
