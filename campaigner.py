@@ -23,10 +23,10 @@ header += 'Subject: ' + results.subject + '\n'
 header += 'Content-Type: multipart/alternative; boundary=' + boundaryID + '\n'
 
 altTextContent = '\n--' + boundaryID + '\n'
-altTextContent += 'Content-Type: text/plain; charset=UTF-8\n\n'
+altTextContent += 'Content-Type: text/plain; charset="UTF-8"\n\n'
 
 httpContent = '\n--' + boundaryID + '\n'
-httpContent += 'Content-Type: text/plain; charset=UTF-8\n'
+httpContent += 'Content-Type: text/plain; charset="UTF-8"\n'
 httpContent += 'Content-Transfer-Encoding: quoted-printable\n\n'
 
 footer = '\n--' + boundaryID + '--\n'
