@@ -6,3 +6,35 @@ iVBORw0KGgoAAAANSUhEUgAAAAMAAAACCAQAAAA3fa6RAAAADklEQVR42mNkAANGCAUAACMAA2w/AMgA
 echo iVBORw0KGgoAAAANSUhEUgAAAAMAAAACCAQAAAA3fa6RAAAADklEQVR42mNkAANGCAUAACMAA2w/AMgAAAAASUVORK5CYII= | base64 -d > 3-2.png
 ###########################################################################################################################
 
+python campaigner.py -e /root/dev/email.txt -S /root/dev/signature.txt -L https://www.google.com
+
+MIME-Version: 1.0
+From: "John Doe" jdoe@127.0.0.1
+Subject: CHANGE SUBJECT
+Content-Type: multipart/alternative; boundary=zc65739a7l927rhx3ro5yu0ru3wun86mu46j5kf0
+
+--zc65739a7l927rhx3ro5yu0ru3wun86mu46j5kf0
+Content-Type: text/plain; charset=UTF-8
+
+Team, 
+
+Please click the attached link. 
+
+https://www.google.com
+
+V/r,
+
+Human Resource Department
+(123) 456-7890
+
+
+--zc65739a7l927rhx3ro5yu0ru3wun86mu46j5kf0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div>Team, <br></div><div><br></div><div>Pleas=
+e click the attached link. <br></div><div><br></div><a href=3D"https=
+://www.google.com">https://www.google.com</a><div><br></div><div>V/r=
+,<br></div><div><br></div><div>Human Resource Department<br></div><d=
+iv>(123) 456-7890<br></div><div><br></div></div></div>=
+--zc65739a7l927rhx3ro5yu0ru3wun86mu46j5kf0--
