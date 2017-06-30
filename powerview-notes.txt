@@ -1,0 +1,1 @@
+Get-NetUser -UserName "*" | Where-Object {$_.physicaldeliveryofficename -like "<name>"} | select samccountname,title,physicaldeliveryofficename | Format-List
