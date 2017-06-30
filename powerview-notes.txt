@@ -1,1 +1,2 @@
-Get-NetUser -UserName "*" | Where-Object {$_.physicaldeliveryofficename -like "<name>"} | select samccountname,title,physicaldeliveryofficename | Format-List
+## Find users based on their listed physical office.  Whether this is accurate or not, orgs can use this to group ppl
+>  Get-NetUser -UserName "*" | Where-Object {$_.physicaldeliveryofficename -like "<name>"} | select samccountname,title,physicaldeliveryofficename | Format-List
