@@ -6,7 +6,7 @@ function https-website() {
 	a2dissite 000-default.conf > /dev/null 2>&1
 	a2dissite default-ssl.conf > /dev/null 2>&1
 	if [ ! -f /etc/apache2/sites-available/000-default.conf-bkup ];
-		then printf "[ ] backing-up 000-default.conf"; 
+		then echo "[ ] backing-up 000-default.conf"; 
 		cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf-bkup;
 		else echo "[ / ] 000-default.conf already backed up at some point"; 
 	fi
