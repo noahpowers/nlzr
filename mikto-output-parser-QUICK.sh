@@ -1,5 +1,5 @@
 #!/bin/bash
-## just a one-liner to parse through the results of Mikto (multi-threaded nikto) output files.
+## This script leverages the results of Mikto (multi-threaded nikto) output files (@ChrisTruncer).  Mikto can be downloaded from:  https://github.com/ChrisTruncer/mikto
 ## ASSUMPTION is the file names follow the syntax:
 ##    ipaddr-port.txt
 ##        e.g.,  192.168.1.1-80.txt
@@ -9,7 +9,8 @@
 for y in $(ls)
     do 
     for z in $(grep -E -i "/" $y |grep -E -v "Server:|requests|PROPFIND" | sed -e 's/:\s*/:\ /' | sed -e 's/OSVDB-[0-9]\{3,5\}://' | cut -d" " -f3 | cut -d":" -f1 | grep "\.")
-        do echo `echo $y$z` >> text.txt
+        do 
+        echo $y$z >> text.txt
         done
     done
     
