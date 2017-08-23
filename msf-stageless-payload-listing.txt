@@ -1,0 +1,303 @@
+###---------------------------------------------------------###
+|  This is a listing of ALL Metasploit's STAGELESS payloads.  |
+###---------------------------------------------------------###
+
+aix/
+	ppc/
+		shell_bind_tcp.rb
+		shell_find_port.rb
+		shell_interact.rb
+		shell_reverse_tcp.rb
+
+
+android/
+	meterpreter_reverse_http.rb   meterpreter_reverse_tcp.rb
+	meterpreter_reverse_https.rb
+
+
+bsd/
+	sparc/
+		shell_bind_tcp.rb
+		shell_reverse_tcp.rb
+
+	x64/  
+		exec.rb
+		shell_bind_ipv6_tcp.rb
+		shell_bind_tcp.rb
+		shell_bind_tcp_small.rb
+		shell_reverse_ipv6_tcp.rb
+		shell_reverse_tcp.rb
+		shell_reverse_tcp_small.rb
+
+	x86/
+		exec.rb
+		metsvc_bind_tcp.rb
+		metsvc_reverse_tcp.rb
+		shell_bind_tcp_ipv6.rb
+		shell_bind_tcp.rb
+		shell_find_port.rb
+		shell_find_tag.rb
+		shell_reverse_tcp_ipv6.rb
+		shell_reverse_tcp.rb
+
+bsdi/
+	x86/
+		shell_bind_tcp.rb
+		shell_find_port.rb
+		shell_reverse_tcp.rb
+
+cmd/
+	mainframe/  
+		apf_privesc_jcl.rb
+		generic_jcl.rb
+		reverse_shell_jcl.rb
+
+	unix/  
+		bind_awk.rb
+		bind_inetd.rb
+		bind_lua.rb
+		bind_netcat_gaping_ipv6.rb
+		bind_netcat_gaping.rb
+		bind_netcat.rb
+		bind_nodejs.rb
+		bind_perl_ipv6.rb
+		bind_perl.rb
+		bind_ruby_ipv6.rb
+		bind_ruby.rb
+		bind_zsh.rb
+		generic.rb
+		interact.rb
+		reverse_awk.rb
+		reverse_bash.rb
+		reverse_bash_telnet_ssl.rb
+		reverse_lua.rb
+		reverse_ncat_ssl.rb
+		reverse_netcat_gaping.rb
+		reverse_netcat.rb
+		reverse_nodejs.rb
+		reverse_openssl.rb
+		reverse_perl.rb
+		reverse_perl_ssl.rb
+		reverse_php_ssl.rb
+		reverse_python.rb
+		reverse_python_ssl.rb
+		reverse.rb
+		reverse_ruby.rb
+		reverse_ruby_ssl.rb
+		reverse_ssl_double_telnet.rb
+		reverse_zsh.rb
+
+	windows/
+		adduser.rb
+		bind_lua.rb
+		bind_perl_ipv6.rb
+		bind_perl.rb
+		bind_ruby.rb
+		download_eval_vbs.rb
+		download_exec_vbs.rb
+		generic.rb
+		powershell_bind_tcp.rb
+		powershell_reverse_tcp.rb
+		reverse_lua.rb
+		reverse_perl.rb
+		reverse_powershell.rb
+		reverse_ruby.rb
+
+
+firefox/
+	exec.rb  shell_bind_tcp.rb  shell_reverse_tcp.rb
+
+
+generic/
+	custom.rb      shell_bind_tcp.rb     tight_loop.rb
+	debug_trap.rb  shell_reverse_tcp.rb
+
+
+java/
+	jsp_shell_bind_tcp.rb  jsp_shell_reverse_tcp.rb  shell_reverse_tcp.rb
+
+
+linux/
+	aarch64/  
+		meterpreter_reverse_http.rb
+		meterpreter_reverse_https.rb
+		meterpreter_reverse_tcp.rb
+
+	armle/   
+		adduser.rb
+		exec.rb
+		meterpreter_reverse_http.rb
+		meterpreter_reverse_https.rb
+		meterpreter_reverse_tcp.rb
+		shell_bind_tcp.rb
+		shell_reverse_tcp.rb
+
+	mipsbe/  
+		exec.rb
+		meterpreter_reverse_http.rb
+		meterpreter_reverse_https.rb
+		meterpreter_reverse_tcp.rb
+		reboot.rb
+		shell_bind_tcp.rb
+		shell_reverse_tcp.rb
+
+	ppc/    
+		meterpreter_reverse_http.rb
+		meterpreter_reverse_https.rb
+		meterpreter_reverse_tcp.rb
+		shell_bind_tcp.rb
+		shell_find_port.rb
+		shell_reverse_tcp.rb
+
+	ppc64le/  
+		meterpreter_reverse_http.rb
+		meterpreter_reverse_https.rb
+		meterpreter_reverse_tcp.rb
+
+	x86/
+		adduser.rb
+		chmod.rb
+		exec.rb
+		meterpreter_reverse_http.rb
+		meterpreter_reverse_https.rb
+		meterpreter_reverse_tcp.rb
+		metsvc_bind_tcp.rb
+		metsvc_reverse_tcp.rb
+		read_file.rb
+		shell_bind_ipv6_tcp.rb
+		shell_bind_tcp_random_port.rb
+		shell_bind_tcp.rb
+		shell_find_port.rb
+		shell_find_tag.rb
+		shell_reverse_tcp.rb
+
+	armbe/    
+		meterpreter_reverse_http.rb
+		meterpreter_reverse_https.rb
+		meterpreter_reverse_tcp.rb
+		shell_bind_tcp.rb
+
+	mips64/  
+		meterpreter_reverse_http.rb
+		meterpreter_reverse_https.rb
+		meterpreter_reverse_tcp.rb
+
+	mipsle/  
+		exec.rb
+		meterpreter_reverse_http.rb
+		meterpreter_reverse_https.rb
+		meterpreter_reverse_tcp.rb
+		reboot.rb
+		shell_bind_tcp.rb
+		shell_reverse_tcp.rb
+
+	ppc64/  
+		shell_bind_tcp.rb
+		shell_find_port.rb
+		shell_reverse_tcp.rb
+
+	x64/      
+		exec.rb
+		meterpreter_reverse_http.rb
+		meterpreter_reverse_https.rb
+		meterpreter_reverse_tcp.rb
+		shell_bind_tcp_random_port.rb
+		shell_bind_tcp.rb
+		shell_find_port.rb
+		shell_reverse_tcp.rb
+
+	zarch/
+		meterpreter_reverse_http.rb
+		meterpreter_reverse_https.rb
+		meterpreter_reverse_tcp.rb
+
+
+mainframe/
+	shell_reverse_tcp.rb
+
+
+nodejs/
+	shell_bind_tcp.rb  shell_reverse_tcp.rb  shell_reverse_tcp_ssl.rb
+
+
+osx/
+	armle/  
+		shell_bind_tcp.rb
+		shell_reverse_tcp.rb
+		vibrate.rb
+
+	ppc/  
+		shell_bind_tcp.rb
+		shell_reverse_tcp.rb
+
+	x64/  
+		exec.rb
+		say.rb
+		shell_bind_tcp.rb
+		shell_find_tag.rb
+		shell_reverse_tcp.rb
+
+	x86/
+		exec.rb
+		shell_bind_tcp.rb
+		shell_find_port.rb
+		shell_reverse_tcp.rb
+		vforkshell_bind_tcp.rb
+		vforkshell_reverse_tcp.rb
+
+
+php/
+	bind_perl_ipv6.rb  download_exec.rb            reverse_php.rb
+	bind_perl.rb       exec.rb                     shell_findsock.rb
+	bind_php_ipv6.rb   meterpreter_reverse_tcp.rb
+	bind_php.rb        reverse_perl.rb
+
+
+python/
+	meterpreter_bind_tcp.rb       meterpreter_reverse_tcp.rb
+	meterpreter_reverse_http.rb   shell_reverse_tcp.rb
+	meterpreter_reverse_https.rb  shell_reverse_tcp_ssl.rb
+
+
+ruby/
+	shell_bind_tcp_ipv6.rb  shell_reverse_tcp.rb
+	shell_bind_tcp.rb       shell_reverse_tcp_ssl.rb
+
+
+solaris/
+	sparc/
+		shell_bind_tcp.rb
+		shell_find_port.rb
+		shell_reverse_tcp.rb
+
+	x86/
+		shell_bind_tcp.rb
+		shell_find_port.rb
+		shell_reverse_tcp.rb
+
+
+tty/
+	unix/
+		interact.rb
+
+
+windows/
+	adduser.rb                       meterpreter_reverse_tcp.rb
+	dns_txt_query_exec.rb            metsvc_bind_tcp.rb
+	download_exec.rb                 metsvc_reverse_tcp.rb
+	exec.rb                          powershell_bind_tcp.rb
+	format_all_drives.rb             powershell_reverse_tcp.rb
+	loadlibrary.rb                   shell_bind_tcp.rb
+	messagebox.rb                    shell_bind_tcp_xpfw.rb
+	meterpreter_bind_tcp.rb          shell_hidden_bind_tcp.rb
+	meterpreter_reverse_http.rb      shell_reverse_tcp.rb
+	meterpreter_reverse_https.rb     speak_pwned.rb
+	meterpreter_reverse_ipv6_tcp.rb  
+
+	x64/
+		exec.rb                          meterpreter_reverse_tcp.rb
+		loadlibrary.rb                   powershell_bind_tcp.rb
+		meterpreter_bind_tcp.rb          powershell_reverse_tcp.rb
+		meterpreter_reverse_http.rb      shell_bind_tcp.rb
+		meterpreter_reverse_https.rb     shell_reverse_tcp.rb
+		meterpreter_reverse_ipv6_tcp.rb
