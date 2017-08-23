@@ -1,6 +1,8 @@
+apt-get remove -qq -y armitage autopsy aircrack-ng beef-xss binwalk bulk_extractor blueranger bluesnarfer btscanner chirp cowpatty dex2jar driftnet ettercap-common ettercap-graphical ghostscript giskismet hackrf hamster-sidejack kismet maltegoce maltego-teeth mfoc mfterm mitmproxy pixiewps recon-ng responder scalpel sipcrack sipp sipvicious siparmyknife sniffjoke spooftooph spike volatility volatility-tools yara yersinia zenmap
+
+
+
 nikto -host <IPAddr> -port <Port#> -C all --use-proxy 127.0.0.1:8080 -useragent "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240"
-
-
 
 
 #UserAgent Strings
@@ -10,4 +12,9 @@ nikto -host <IPAddr> -port <Port#> -C all --use-proxy 127.0.0.1:8080 -useragent 
 
 ##Internet Explorer (general)
 "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko"
+
+###From @killswitch-GUI :: 
+nmap -Pn -n -sS -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 6000 -oA CLIENT-# -vvv --open -iL <IPLIST>
+
+map -Pn -n -sS -p- -sV --min-hostgroup 255 --min-rtt-timeout 25ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 1000 -oA <customer-#> -vvv --open -iL <IPLIST>
 
