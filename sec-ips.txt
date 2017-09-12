@@ -1,0 +1,17 @@
+208.90.56.153   #Cisco IronPort
+208.90.57.196   #Cisco IronPort
+141.212.122.64  #UMich Research EECS
+74.82.47.2      #Scan-ShadowServer
+206.253.224.74  #Internet Security Systems
+180.76.15.0/24  #Baidu
+
+
+208.87.139.67   #WebRoot
+66.35.53.250    #WebRoot
+150.70.173.57   #TrendMicro
+173.255.233.124 #Sucuri SiteCheck
+199.116.169.254 #BlueCoat
+204.13.201.139  #TrustWave
+64.74.215.1     #PaloAlto
+64.74.215.2     #PaloAlto
+69.164.145.162  #TrustWave/Faction
