@@ -6,6 +6,7 @@ function create_structure() {
 	mkdir -p "share/Data/Network Mapping/Internal/Nmap/"
 	mkdir -p "share/Data/Network Mapping/External/Eyewitness/"
 	mkdir -p "share/Data/Network Mapping/External/Nmap/"
+    mkdir -p "share/Data/Network Mapping/External/OSINT"
 	mkdir -p "share/Data/Vulnerability Scanning/External/Nessus/"
 	mkdir -p "share/Data/Vulnerability Scanning/External/Nikto/"
 	mkdir -p "share/Data/Vulnerability Scanning/Internal/Nessus/"
