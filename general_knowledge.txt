@@ -18,3 +18,13 @@ nmap -Pn -n -sS -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 
 
 map -Pn -n -sS -p- -sV --min-hostgroup 255 --min-rtt-timeout 25ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 1000 -oA <customer-#> -vvv --open -iL <IPLIST>
 
+## Oracle Java Install (for Cobalt Strike)
+
+http://download.oracle.com/otn-pub/java/jdk/8u144-b01/090f390dda5b47b9b721c7dfaa008135/jdk-8u144-linux-x64.tar.gz
+update-alternatives --install /usr/bin/java java /opt/jdk1.8.0_144/bin/java 1
+update-alternatives --install /usr/bin/javac javac /opt/jdk1.8.0_144/bin/javac 1
+update-alternatives --install /usr/lib/mozilla/plugins/libjavaplugin.so mozilla-javaplugin.so /opt/jdk1.8.0_144/jre/lib/amd64/libnpjp2.so 1
+update-alternatives --set java /opt/jdk1.8.0_144/bin/java
+update-alternatives --set javac /opt/jdk1.8.0_144/bin/javac
+update-alternatives --set mozilla-javaplugin.so /opt/jdk1.8.0_144/jre/lib/amd64/libnpjp2.so
+
