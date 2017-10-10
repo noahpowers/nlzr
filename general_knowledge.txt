@@ -21,6 +21,7 @@ map -Pn -n -sS -p- -sV --min-hostgroup 255 --min-rtt-timeout 25ms --max-rtt-time
 ## Oracle Java Install (for Cobalt Strike)
 
 http://download.oracle.com/otn-pub/java/jdk/8u144-b01/090f390dda5b47b9b721c7dfaa008135/jdk-8u144-linux-x64.tar.gz
+tar xf jdk-8u144-linux-x64.tar.gz; mv jdk-8u144-linux-x64.tar.gz /opt/
 update-alternatives --install /usr/bin/java java /opt/jdk1.8.0_144/bin/java 1
 update-alternatives --install /usr/bin/javac javac /opt/jdk1.8.0_144/bin/javac 1
 update-alternatives --install /usr/lib/mozilla/plugins/libjavaplugin.so mozilla-javaplugin.so /opt/jdk1.8.0_144/jre/lib/amd64/libnpjp2.so 1
