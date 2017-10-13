@@ -23,6 +23,8 @@ function create_structure() {
     mkdir -p "share/Findings/External/"
     mkdir -p "share/Working/"
     mkdir -p "share/Documentation/"
+    cd ~/share/Findings/
+    echo $'Affected Systems(comma delimited):\n{xxx.xxx.xxx.xxx, xxx.xxx.xxx.xxx}\n\nService/Services (comma delimited):\n{i.e. Penetration Testing (must match services catalog)}\n\nCustomer Specific Finding Description (one line): \n{Description of the finding with text unique to this RVA, if necessary}\n\nCustomer Specific Recommendation (one line):\n{Recommendation with text unique to this RVA, if necessary}\n\nScreenshot Description ("This screenshot shows...")\n{This screenshot shows a group of penguins having fun on the beach.}\n\nHVA Specific: {If this finding is HVA specific then replace this text with the HVA name (must match the HVA folder name in the "Attack Path" folder)}'
 }
 
 function client_zip_structure() {
