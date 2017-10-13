@@ -29,3 +29,11 @@ update-alternatives --set java /opt/jdk1.8.0_144/bin/java
 update-alternatives --set javac /opt/jdk1.8.0_144/bin/javac
 update-alternatives --set mozilla-javaplugin.so /opt/jdk1.8.0_144/jre/lib/amd64/libnpjp2.so
 
+## WMIC Commands (post exploitation)
+wmic computersystem get roles
+wmic computer system get partofdomain
+wmic computer system get domain
+wmic computer system 
+wmic diskdrive list brief
+wmic volume list brief
+wmic startup list brief
