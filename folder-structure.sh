@@ -17,7 +17,7 @@ function create_structure() {
     mkdir -p "share/Data/Phishing/Templates/"
     mkdir -p "share/Data/Phishing/Payloads/OLE/"
     mkdir -p "share/Data/Phishing/Payloads/HTA/"
-    mkdir -p "share/Findings/Technical Overview/Attack\ Path/"
+    mkdir -p "share/Findings/Technical Overview/Attack Path/"
     mkdir -p "share/Findings/Technical Overview/Phishing"
     mkdir -p "share/Findings/Internal/"
     mkdir -p "share/Findings/External/"
