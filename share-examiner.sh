@@ -2,7 +2,9 @@
 #####
 ## This script assumes the output from PowerView's Invoke-ShareFinder script (minus the extraneous pieces of information 
 ## such as share description).  The script requires a file with the listing of shares in it; general format of one share 
-## per line AND make sure to leave the Windows formating (ie., \\myshare.local\folder$).
+## per line AND make sure to leave the Windows formating (ie., \\myshare.local\folder$).  Each search line will start up
+## in it's own process to make it a bit faster to run.
+#####
 cd ~
 umount /mnt/targ 2>&1
 mkdir -p /mnt/targ
@@ -30,7 +32,7 @@ do
         sleep 3
         cd /mnt/targ
         filename=$( echo $pname | sed -e 's/\///g' )
-        ### matches context for SSN's ... TONS of false-positives
+        ### matches context for SSN's ... will produce false-positives, but we're trying to reduce false-negatives.
         echo "Processing share:  ${pname} ..."
         grep -R -InH '[0-9]\{3\}[-|\ ][0-9]\{2\}[-|\ ][0-9]\{4\}' >> ~/share-search/${filename}.ssn.txt &
         ### trying to make searching easier by using a few common last names... 
