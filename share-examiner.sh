@@ -1,7 +1,8 @@
 #!/bin/bash
 #####
 ## This script assumes the output from PowerView's Invoke-ShareFinder script (minus the extraneous pieces of information 
-## such as share description).  The script requires  
+## such as share description).  The script requires a file with the listing of shares in it; general format of one share 
+## per line AND make sure to leave the Windows formating (ie., \\myshare.local\folder$).
 cd ~
 umount /mnt/targ 2>&1
 mkdir -p /mnt/targ
@@ -9,6 +10,7 @@ mkdir -p ~/share-search/ 2>&1
 
 read -p "Enter the username you want to use:  " -r user_name
 read -p "Enter the password for that user:  " -r user_pass
+read -p "Enter the full path to your [shares.txt] file:  " -r sharelist
 
 cat <<-EOF > ~/.smbcredentials
 username=${user_name}
@@ -16,7 +18,7 @@ password=${user_pass}
 EOF
 
 ### requires a file with all the shares loaded into it
-path="/root/sharelist.txt"
+path=$sharelist
 for z in $(cat $path);
 do
     ### the structure of the 'grep' and 'sed' arguments only applies if the shares start with the windows share structure "\\"
