@@ -1,7 +1,20 @@
 #!/bin/bash
+#####
+## This script assumes the output from PowerView's Invoke-ShareFinder script (minus the extraneous pieces of information 
+## such as share description).  The script requires  
 cd ~
 umount /mnt/targ 2>&1
+mkdir -p /mnt/targ
 mkdir -p ~/share-search/ 2>&1
+
+read -p "Enter the username you want to use:  " -r user_name
+read -p "Enter the password for that user:  " -r user_pass
+
+cat <<-EOF > ~/.smbcredentials
+username=${user_name}
+password=${user_pass}
+EOF
+
 ### requires a file with all the shares loaded into it
 path="/root/sharelist.txt"
 for z in $(cat $path);
@@ -11,7 +24,7 @@ do
     pname=$( echo $z | grep '^\\.*$' | sed -e 's/\\/\//g' )
     if [ $pname ];
         then
-        mount -t cifs -o credentials=/root/.smbcredentials $pname /mnt/targ
+        mount -t cifs -o credentials=~/.smbcredentials $pname /mnt/targ
         sleep 3
         cd /mnt/targ
         filename=$( echo $pname | sed -e 's/\///g' )
