@@ -45,7 +45,7 @@ function team_zip_structure() {
     read -p "[ ] Who is the client?:  " -r clientname
     path=$( cd ~;pwd )
     cd ~
-    zip -r "${clientname}-For${mycompany}UseOnly.zip" share/ 
+    zip -r "${clientname}-For${mycompany}UseOnly.zip" share/ > /dev/null 2>&1
     echo "Your zip file is stored in the path: ${path}"
     exit	
 }
