@@ -28,9 +28,9 @@ function create_structure() {
 }
 
 function client_zip_structure() {
-    read -p "[ ] Enter the username for the account who owns the share:  " -r username
+    echo $'\nMake sure you `su` into the user who owns the share first!\n[ ] if you need to, exit this script and relaunch...'
+    sleep 2
     read -p "[ ] Who is the client?:  " -r clientname
-    su $username
     path=$( cd ~;pwd )
     cd ~
     zip -r "${clientname}-CLIENT.zip" share/ --exclude "share/Working/*" > /dev/null 2>&1
@@ -39,13 +39,13 @@ function client_zip_structure() {
 }
 
 function team_zip_structure() {
-    read -p "[ ] Enter the username for the account who owns the share:  " -r username
+    echo $'\nMake sure you `su` into the user who owns the share first!\n[ ] if you need to, exit this script and relaunch...'
+    sleep 2
     read -p "[ ] Enter your company name (without spaces):  " -r mycompany
     read -p "[ ] Who is the client?:  " -r clientname
-    su $username
     path=$( cd ~;pwd )
     cd ~
-    zip -r "${clientname}-For${mycompany}Use.zip" share/ > /dev/null 2>&1
+    zip -r "${clientname}-For${mycompany}UseOnly.zip" share/ 
     echo "Your zip file is stored in the path: ${path}"
     exit	
 }
