@@ -1,12 +1,12 @@
-apt-get remove -qq -y ace-voip armitage autopsy aircrack-ng beef-xss binwalk bulk_extractor blueranger bluesnarfer btscanner chirp cowpatty dex2jar driftnet ettercap-common ettercap-graphical ghostscript giskismet hackrf hamster-sidejack kismet maltegoce maltego-teeth mfoc mfterm mitmproxy pixiewps recon-ng responder scalpel sipcrack sipp sipvicious siparmyknife sniffjoke spooftooph spike volatility volatility-tools yara yersinia zenmap
+### Speed up CIFS share
+### Add to /etc/samba/smb.conf configuration
+### (Read more @ https://calomel.org/samba_optimize.html)
+socket options = TCP_NODELAY IPTOS_LOWDELAY SO_RCVBUF=65536 SO_SNDBUF=65536 SO_KEEPALIVE
 
-
-
+### NIKTO command to change UA-string
 nikto -host <IPAddr> -port <Port#> -C all --use-proxy 127.0.0.1:8080 -useragent "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240"
 
-
-#UserAgent Strings
-
+#UserAgent Strings, common
 ##Microsoft Edge
 "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10240"
 
