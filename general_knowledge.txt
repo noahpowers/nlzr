@@ -29,6 +29,13 @@ update-alternatives --set java /opt/jdk1.8.0_144/bin/java
 update-alternatives --set javac /opt/jdk1.8.0_144/bin/javac
 update-alternatives --set mozilla-javaplugin.so /opt/jdk1.8.0_144/jre/lib/amd64/libnpjp2.so
 
+## Install PowerShell on Kali 2017.03
+## REF: https://github.com/EmpireProject/Empire/issues/910
+wget https://github.com/PowerShell/PowerShell/releases/download/v6.0.0-rc.2/powershell_6.0.0-rc.2-1.debian.9_amd64.deb
+dpkg -i powershell_6.0.0-rc.2-1.debian.9_amd64.deb
+#... fix dependency error
+apt-get install -f
+
 ## WMIC Commands (post exploitation)
 wmic computersystem get roles
 wmic computer system get partofdomain
