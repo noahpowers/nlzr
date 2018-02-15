@@ -2,7 +2,7 @@
 ### Written by Noah Powers, Delta Risk (LLC)                               #
 ###                                                                        #
 ### Designed to be run on the CS Team Server                               #
-### Tested in a limited set of logs (one week worth) with CS version 3.3   #
+### Tested in a limited set of logs (one week worth) with CS version 3.10  #
 ############################################################################
 ###                                                                        #
 ### Returns the status of beacons that have phoned home.                   #
