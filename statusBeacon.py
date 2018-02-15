@@ -12,9 +12,9 @@
 import os
 import subprocess
 
-query = "grep -r -i 'beacon' | grep -i 'initial beacon from ' | grep -E -v -i '(rvauser|matt)' | cut -d':' -f2,3 | cut -d' ' -f1,2,7-11 | sort > roughLogs.txt"
-query2 = "grep -r -i 'beacon' | grep -i 'initial beacon from ' | grep -E -v -i '(rvauser|matt)' | cut -d':' -f2,3 | cut -d'@' -f2 | cut -d' ' -f1 | wc -l"
-query3 = "grep -r -i 'beacon' | grep -i 'initial beacon from ' | grep -E -v -i '(rvauser|matt)' | cut -d':' -f2,3 | cut -d'@' -f2 | cut -d' ' -f1 | sort | uniq | wc -l"
+query = "grep -r -i 'beacon' | grep -i 'initial beacon from ' | grep -E -v -i '(rvauser)' | cut -d' ' -f7,8 | cut -d' ' -f1,2,7-11 | sort > roughLogs.txt"
+query2 = "grep -r -i 'beacon' | grep -i 'initial beacon from ' | grep -E -v -i '(rvauser)' | cut -d' ' -f7,8 | cut -d'@' -f2 | cut -d' ' -f1 | wc -l"
+query3 = "grep -r -i 'beacon' | grep -i 'initial beacon from ' | grep -E -v -i '(rvauser)' | cut -d' ' -f7,8 | cut -d'@' -f2 | cut -d' ' -f1 | sort | uniq | wc -l"
 
 print ""
 print 'Total Beacons: '
