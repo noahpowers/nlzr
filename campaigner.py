@@ -12,8 +12,9 @@ parser.add_argument('-u',  action="store",  dest='username',  default='jdoe',  h
 parser.add_argument('-f',  action="store",  dest='firstname',  default='John',  help='first name of sender')
 parser.add_argument('-l',  action="store",  dest='lastname',  default='Doe',  help='last name of sender')
 parser.add_argument('-e',  action="store",  dest='email',  default=[],  help='plain text email body file')
-parser.add_argument('-L',  action="store",  dest='link',  default='',  help='HTA link')
 parser.add_argument('-S',  action="store",  dest='signature',  default=[],  help='plain text signature file')
+parser.add_argument('-L',  action="store",  dest='link',  default='',  help='HTA link')
+parser.add_argument('-P',  action="store",  dest='pixel',  default='',  help='pixel link')
 
 results = parser.parse_args()
 
@@ -51,7 +52,12 @@ else:
     with open(results.signature) as f:
         for line in f:
             body += line
-            bodyDiv += '<div>' + "<br>".join(line.split("\n")) + '</div>'
+
+if results.pixel == '':
+    bodyDiv += '<div>' + "<br>".join(line.split("\n")) + '</div>'
+else:
+    context = '<img src="' + results.pixel + '">'
+    bodyDiv += '<div>' + "<br>".join(line.split("\n")) + context + '</div>'
 
 bodyDiv += "</div></div>"
 bodyHTTP = "=\n".join(re.findall("(?s).{,68}", bodyDiv))[:-1]
