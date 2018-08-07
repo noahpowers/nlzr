@@ -52,6 +52,7 @@ else:
     with open(results.signature) as f:
         for line in f:
             body += line
+            bodyDiv += '<div>' + "<br>".join(line.split("\n")) + '</div>'
 
 if results.pixel == '':
     bodyDiv += '<div>' + "<br>".join(line.split("\n")) + '</div>'
