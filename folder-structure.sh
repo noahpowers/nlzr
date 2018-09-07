@@ -30,10 +30,11 @@ function create_structure() {
 function client_zip_structure() {
     echo $'\nMake sure you `su` into the user who owns the share first!\n[ ] if you need to, exit this script and relaunch...'
     sleep 2
-    read -p "[ ] Who is the client?:  " -r clientname
+    read -p "[ ] Assessment ID and Number:  " -r assessmentID
+    read -p "[ ] Customer Shortname:  " -r shortname
     path=$( cd ~;pwd )
     cd ~
-    zip -r "${clientname}-CLIENT.zip" share/ --exclude "share/Working/*" > /dev/null 2>&1
+    zip -r "${assessmentID}-${shortname}-CLIENT.zip" share/ --exclude "share/Working/*" > /dev/null 2>&1
     echo "Your zip file is stored in the path: ${path}"
     exit
 }
@@ -41,11 +42,12 @@ function client_zip_structure() {
 function team_zip_structure() {
     echo $'\nMake sure you `su` into the user who owns the share first!\n[ ] if you need to, exit this script and relaunch...'
     sleep 2
-    read -p "[ ] Enter your company name (without spaces):  " -r mycompany
-    read -p "[ ] Who is the client?:  " -r clientname
+    read -p "[ ] Assessment ID and Number:  " -r assessmentID
+    read -p "[ ] Customer Shortname:  " -r shortname
+    asDate=$(date +"%Y%m%d")
     path=$( cd ~;pwd )
     cd ~
-    zip -r "${clientname}-For${mycompany}UseOnly.zip" share/ > /dev/null 2>&1
+    zip -r "${assessmentID}_${shortname}_${asDate}.zip" share/ > /dev/null 2>&1
     echo "Your zip file is stored in the path: ${path}"
     exit	
 }
