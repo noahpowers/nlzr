@@ -1,6 +1,8 @@
 #!/bin/bash
 
 function create_structure() {
+    echo $'\nONLY RUN THIS OPTION IF YOU WERE INSTRUCTED TO...\n\tThis option most likely does not apply to your situation!..!\n\t\tThe other options may still be helpful\n\n'
+    sleep 2
     cd ~
     mkdir -p "share/Data/Network Mapping/Internal/Eyewitness/"
     mkdir -p "share/Data/Network Mapping/Internal/Nmap/"
