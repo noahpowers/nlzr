@@ -42,7 +42,7 @@ function client_zip_structure() {
 }
 
 function team_zip_structure() {
-    echo $'\nMake sure you `su` into the user who owns the share first!\n[ ] if you need to, exit this script and relaunch...'
+    echo $'\nMake sure you `su` into the user who owns the share first!\n[ ] if you need to, exit this script and relaunch...\n'
     sleep 2
     read -p "[ ] Assessment ID and Number:  " -r assessmentID
     read -p "[ ] Customer Shortname:  " -r shortname
