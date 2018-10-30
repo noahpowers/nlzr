@@ -65,8 +65,21 @@ function findEmails() {
     cd $dir
 }
 
+function webappHosting() {
+    apt-get install -qq -y jq
+    do 
+        echo $'\n###########################\n' >> domain-ownership.txt
+        whois $z |grep -E "Domain\ Name|Registrar:|Registrant\ Organization|Registrant\ Admin|Tech\ Organization|Name\ Server" >> domain-ownership.txt
+        nslookup $z | grep -E -iv "192.168.202|non-authoritative" >> domain-ownership.txt
+        y=$( nslookup ${z} | grep -E -iv "192.168.202|name" | cut -d" " -f2 );x=$(echo ${y} | cut -d" " -f2 )
+        curl ipinfo.io/$x | jq '.ip,.org,.hostname,.city,.region' >> domain-ownership.txt
+        echo $'\n###########################\n'
+    done
+    sed -i 's/\ \ \ //g' domain-ownership.txt
+}
+
 PS3="Server Setup Script - Pick an option: "
-options=("Install Sublist3r" "Install SimplyEmail" "Find Sub-Domains" "Find Emails")
+options=("Install Sublist3r" "Install SimplyEmail" "Find Sub-Domains" "Find Emails" "Find WebApp Host)
 select opt in "${options[@]}" "Quit"; do
 
     case "$REPLY" in
@@ -79,6 +92,8 @@ select opt in "${options[@]}" "Quit"; do
     3) gatherDomains;;
 
     4) findEmails;;
+    
+    5) webappHosting;;
 
     $(( ${#options[@]}+1 )) ) echo "Goodbye!"; break;;
     *) echo "Invalid option. Try another one.";continue;;
