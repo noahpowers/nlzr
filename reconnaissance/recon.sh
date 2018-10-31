@@ -53,6 +53,7 @@ function gatherDomains() {
 function findEmails() {
     #domainfile="/root/*_subdomains.txt.txt"
     read -p "Enter Path to File Containing Domains [full path]: " -r targetsfile
+    pip install BeautifulSoup
     dir=$(pwd)
     cd ~
     #path=$(find -name SimplyEmail)
