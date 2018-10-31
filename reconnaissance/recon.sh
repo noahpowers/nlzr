@@ -26,8 +26,9 @@ function gatherDomains() {
     cd ~
     subdomainFile=$(find -name "subdomains.py")
     sublist3rLocation=$(find -name "Sublist3r")
-    cp $subdomainFile $sublist3rLocation
+    cp $subdomainFile $sublist3rLocation 
     cd $sublist3rLocation
+    path2 = $(pwd)
     echo "#,Domain Name,IP Address" > ${name}-DomainNames.csv
     echo "Subnet,Number of Names Discovered,Min IP,Max IP" > ${name}-DomainSubnets.csv
     ipaddr=$(nslookup $name | grep "Address" | grep -iv "#" | cut -d" " -f2)
@@ -46,7 +47,7 @@ function gatherDomains() {
     done
     cd ~
     sublist3rLocation=$(find -name "Sublist3r")
-    echo $'\nFile stored in directory: ${sublist3rLocation}'
+    echo $'\nFile stored in directory: ${path2} \n'
     cd $dir
 }
 
