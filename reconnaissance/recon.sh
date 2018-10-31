@@ -55,8 +55,9 @@ function findEmails() {
     read -p "Enter Path to File Containing Domains [full path]: " -r targetsfile
     dir=$(pwd)
     cd ~
-    path=$(find -name SimplyEmail)
-    cd $path
+    #path=$(find -name SimplyEmail)
+    #cd $path
+    cd ~/SimplyEmail
     for z in $(cat $targetsfile);
         do 
         python SimplyEmail.py -e $z -all --json ${z}-emails.txt
