@@ -47,7 +47,9 @@ function gatherDomains() {
     done
     cd ~
     sublist3rLocation=$(find -name "Sublist3r")
-    echo $'\nFile stored in directory: ${path2} \n'
+    echo $'\n'
+    echo "File stored in directory: $path2 "
+    echo $'\n'
     cd $dir
 }
 
