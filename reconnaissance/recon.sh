@@ -46,7 +46,7 @@ function gatherDomains() {
     done
     cd ~
     sublist3rLocation=$(find -name "Sublist3r")
-    echo "File stored in directory: $sublist3rLocation"
+    echo $'\nFile stored in directory: ${sublist3rLocation}'
     cd $dir
 }
 
@@ -85,7 +85,7 @@ function webappHosting() {
     echo $'\nWeb App domain hosting information is stored in "domain-ownership.txt"\n'
 }
 
-PS3="Server Setup Script - Pick an option: "
+PS3="recon - Pick an option: "
 options=("Install Sublist3r" "Install SimplyEmail" "Find Sub-Domains" "Find Emails" "Find WebApp Host")
 select opt in "${options[@]}" "Quit"; do
 
