@@ -33,14 +33,15 @@ function gatherDomains() {
     ipaddr=$(nslookup $name | grep "Address" | grep -iv "#" | cut -d" " -f2)
     count=1
     echo "$count,$name,$ipaddr" >> ${name}-DomainNames.csv
+    echo "$name" >>
     python subdomains.py $name
     echo "$name" >> ${name}_subdomains.txt
     for subname in $(cat ${name}_subdomains.txt);
     do
         count=$[count + 1]
-        ipaddr=$(nslookup $subname | grep "Address" | grep -iv "#" | cut -d" " -f2)
-        cidr=$(whois $ipaddr |grep CIDR | cut -d" " -f12)
-        prefix=$(echo $cidr | cut -d"/" -f2)
+        ipaddr=$( nslookup $subname | grep "Address" | grep -iv "#" | cut -d" " -f2 )
+        cidr=$( whois $ipaddr |grep CIDR | cut -d" " -f12 )
+        prefix=$( echo $cidr | cut -d"/" -f2 )
         echo "$count,$subname,$ipaddr" >> ${name}-DomainNames.csv
         echo "$cidr,$subname,," >> ${name}-DomainSubnets.csv
     done
@@ -51,7 +52,7 @@ function gatherDomains() {
 }
 
 function findEmails() {
-    domainfile="/root/*_subdomains.txt.txt"
+    #domainfile="/root/*_subdomains.txt.txt"
     read -p "Enter Path to File Containing Domains [full path]: " -r targetsfile
     dir=$(pwd)
     cd ~
@@ -60,7 +61,7 @@ function findEmails() {
     cd ~/SimplyEmail
     for z in $(cat $targetsfile);
         do 
-        python SimplyEmail.py -e $z -all --json ${z}-emails.txt
+        python SimplyEmail.py -e ${z} -all --json ${z}-emails.txt
     done
     echo "[+] Email files stored in path: ${path}"
     cd $dir
