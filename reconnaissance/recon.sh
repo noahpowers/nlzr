@@ -33,7 +33,6 @@ function gatherDomains() {
     ipaddr=$(nslookup $name | grep "Address" | grep -iv "#" | cut -d" " -f2)
     count=1
     echo "$count,$name,$ipaddr" >> ${name}-DomainNames.csv
-    echo "$name" >>
     python subdomains.py $name
     echo "$name" >> ${name}_subdomains.txt
     for subname in $(cat ${name}_subdomains.txt);
