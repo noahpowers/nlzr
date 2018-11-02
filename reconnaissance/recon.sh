@@ -90,10 +90,10 @@ function webappHosting() {
         do 
             echo $'\n###########################\n' >> domain-ownership.txt
             whois $z |grep -E "Domain\ Name|Registrar:|Registrant\ Organization|Registrant\ Admin|Tech\ Organization|Name\ Server" >> domain-ownership.txt
-            nslookup $z | grep -E -iv "192.168.202|non-authoritative" >> domain-ownership.txt
-            y=$( nslookup ${z} | grep -E -iv "192.168.202|name" | cut -d" " -f2 )
-            x=$(echo ${y} | cut -d" " -f2 )
-            curl ipinfo.io/$x | jq '.ip,.org,.hostname,.city,.region' >> domain-ownership.txt
+            nslookup $z | grep -E -iv "server|#|non-authoritative" >> domain-ownership.txt
+            y=$( nslookup ${z} | grep -E -iv "server|#|non-authoritative|name" | cut -d" " -f2 )
+            #x=$(echo ${y} | cut -d" " -f2 )
+            curl ipinfo.io/$y | jq '.ip,.org,.hostname,.city,.region' >> domain-ownership.txt
     done
     sed -i 's/\ \ \ //g' domain-ownership.txt
     echo $'\nWeb App domain hosting information is stored in domain-ownership.txt\n'
