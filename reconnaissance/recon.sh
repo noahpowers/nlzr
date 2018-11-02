@@ -3,24 +3,29 @@
 ### git clone https://github.com/aboul3la/Sublist3r ; cd Sublist3r/ ; pip install -r requirements.txt 
 ### Run script from the Sublist3r folder!!
 function install-Sublist3r() {
+    echo ""
     dir=$(pwd)
     cd ~
     git clone https://github.com/aboul3la/Sublist3r
     cd Sublist3r/
     pip install -r requirements.txt
     cd $dir
+    echo ""
 }
 
 function install-SimplyEmail() {
+    echo ""
     dir=$(pwd)
     cd ~
     git clone https://github.com/killswitch-GUI/SimplyEmail
     cd SimplyEmail
     bash setup/setup.sh
     cd $dir
+    echo ""
 }
 
 function gatherDomains() {
+    echo ""
     read -p "Enter a domain: " -r name
     dir=$(pwd)
     cd ~
@@ -54,6 +59,7 @@ function gatherDomains() {
 }
 
 function findEmails() {
+    echo ""
     #domainfile="/root/*_subdomains.txt.txt"
     read -p "Enter Path to File Containing Domains [full path]: " -r targetsfile
     pip install BeautifulSoup
@@ -70,11 +76,14 @@ function findEmails() {
     cp -a *-emails.txt $dir
     rm *-emails.txt
     cd $dir
+    echo ""
 }
 
 function webappHosting() {
+    echo ""
     rm domain-ownership.txt
     apt-get install -qq -y jq
+    echo ""
     path=$(pwd)
     read -p $'Enter full path file location for domain file (e.g., /root/domains.txt):  \n' -r domains
     for z in $(cat ${domains});
