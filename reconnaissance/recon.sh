@@ -28,7 +28,7 @@ function gatherDomains() {
     sublist3rLocation=$(find -name "Sublist3r")
     cp $subdomainFile $sublist3rLocation 
     cd $sublist3rLocation
-    path2 = $(pwd)
+    path2=$(pwd)
     echo "#,Domain Name,IP Address" > ${name}-DomainNames.csv
     echo "Subnet,Number of Names Discovered,Min IP,Max IP" > ${name}-DomainSubnets.csv
     ipaddr=$(nslookup $name | grep "Address" | grep -iv "#" | cut -d" " -f2)
@@ -40,6 +40,8 @@ function gatherDomains() {
     do
         count=$[count + 1]
         ipaddr=$( nslookup $subname | grep "Address" | grep -iv "#" | cut -d" " -f2 )
+        echo "whois ${ipaddr} |grep CIDR | cut -d" " -f12"
+        whois $ipaddr |grep CIDR | cut -d" " -f12
         cidr=$( whois $ipaddr |grep CIDR | cut -d" " -f12 )
         prefix=$( echo $cidr | cut -d"/" -f2 )
         echo "$count,$subname,$ipaddr" >> ${name}-DomainNames.csv
