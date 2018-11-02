@@ -39,7 +39,7 @@ function gatherDomains() {
     for subname in $(cat ${name}_subdomains.txt);
     do
         count=$[count + 1]
-        ipaddr=$( nslookup $subname | grep "Address" | grep -iv "#" | cut -d" " -f2 )
+        ipaddr=$( nslookup ${subname} | grep "Address" | grep -iv "#" | cut -d" " -f2 )
         echo "whois ${ipaddr} |grep CIDR | cut -d" " -f12"
         whois $ipaddr |grep CIDR | cut -d" " -f12
         cidr=$( whois $ipaddr |grep CIDR | cut -d" " -f12 )
