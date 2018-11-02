@@ -81,7 +81,7 @@ function findEmails() {
 
 function webappHosting() {
     echo ""
-    rm domain-ownership.txt
+    rm domain-ownership.txt 2>&1
     apt-get install -qq -y jq
     echo ""
     path=$(pwd)
@@ -96,7 +96,7 @@ function webappHosting() {
             curl ipinfo.io/$x | jq '.ip,.org,.hostname,.city,.region' >> domain-ownership.txt
     done
     sed -i 's/\ \ \ //g' domain-ownership.txt
-    echo $'\nWeb App domain hosting information is stored in "${path}/domain-ownership.txt"\n'
+    echo $'\nWeb App domain hosting information is stored in domain-ownership.txt\n'
 }
 
 PS3="recon - Pick an option: "
