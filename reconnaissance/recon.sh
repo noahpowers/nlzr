@@ -48,7 +48,7 @@ function gatherDomains() {
     cd ~
     sublist3rLocation=$(find -name "Sublist3r")
     echo $'\n'
-    echo "File stored in directory: $path2 "
+    echo "File stored in directory: ${path2} "
     echo $'\n'
     cd $dir
 }
@@ -66,13 +66,16 @@ function findEmails() {
         do 
         python SimplyEmail.py -e ${z} -all --json ${z}-emails.txt
     done
-    echo "[+] Email files stored in path: ${path}"
+    echo "[+] Email files stored in path: ${path} "
+    cp -a *-emails.txt $dir
+    rm *-emails.txt
     cd $dir
 }
 
 function webappHosting() {
     rm domain-ownership.txt
     apt-get install -qq -y jq
+    path=$(pwd)
     read -p $'Enter full path file location for domain file (e.g., /root/domains.txt):  \n' -r domains
     for z in $(cat ${domains});
         do 
@@ -82,10 +85,9 @@ function webappHosting() {
             y=$( nslookup ${z} | grep -E -iv "192.168.202|name" | cut -d" " -f2 )
             x=$(echo ${y} | cut -d" " -f2 )
             curl ipinfo.io/$x | jq '.ip,.org,.hostname,.city,.region' >> domain-ownership.txt
-            echo $'\n###########################\n'
     done
     sed -i 's/\ \ \ //g' domain-ownership.txt
-    echo $'\nWeb App domain hosting information is stored in "domain-ownership.txt"\n'
+    echo $'\nWeb App domain hosting information is stored in "${path}/domain-ownership.txt"\n'
 }
 
 PS3="recon - Pick an option: "
