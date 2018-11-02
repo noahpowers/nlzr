@@ -40,8 +40,6 @@ function gatherDomains() {
     do
         count=$[count + 1]
         ipaddr=$( nslookup ${subname} | grep "Address" | grep -iv "#" | cut -d" " -f2 | grep -iv ":" )
-        echo "whois \${ipaddr} |grep CIDR | cut -d" " -f12"
-        whois $ipaddr |grep CIDR | cut -d" " -f12
         cidr=$( whois $ipaddr |grep CIDR | cut -d" " -f12 )
         prefix=$( echo $cidr | cut -d"/" -f2 )
         echo "$count,$subname,$ipaddr" >> ${name}-DomainNames.csv
