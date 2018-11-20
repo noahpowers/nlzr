@@ -3,11 +3,14 @@
 function client_zip_structure() {
     echo $'\nMake sure you `su` into the user who owns the share first!\n[ ] if you need to, exit this script and relaunch...\n'
     sleep 2
-    read -p "[ ] Assessment ID and Number:  " -r assessmentID
     read -p "[ ] Customer Shortname:  " -r shortname
+    read -p "[ ] Assessment ID and Number:  " -r assessmentID
     path=$( cd ~;pwd )
     cd ~
-    zip -r "${assessmentID}-${shortname}-CLIENT.zip" share/ --exclude "share/Working/*" > /dev/null 2>&1
+    rm "share/.Trash*/files/*"
+    rm "share/.Trash*/info/*"
+    zip -r "${shortname}_${assessmentID}_CLIENT.zip" share/ --exclude "share/Working/*" "share/Licenses/*" "rgen-master" > /dev/null 2>&1
+    echo ""
     echo "Your zip file is stored in the path: ${path}"
     exit
 }
@@ -15,18 +18,21 @@ function client_zip_structure() {
 function team_zip_structure() {
     echo $'\nMake sure you `su` into the user who owns the share first!\n[ ] if you need to, exit this script and relaunch...\n'
     sleep 2
-    read -p "[ ] Assessment ID and Number:  " -r assessmentID
     read -p "[ ] Customer Shortname:  " -r shortname
+    read -p "[ ] Assessment ID and Number:  " -r assessmentID
     asDate=$(date +"%Y%m%d")
     path=$( cd ~;pwd )
     cd ~
-    zip -r "${assessmentID}_${shortname}_${asDate}.zip" share/ > /dev/null 2>&1
+    rm "share/.Trash*/files/*"
+    rm "share/.Trash*/info/*"
+    zip -r "${shortname}_${assessmentID}_${asDate}.zip" share/ > /dev/null 2>&1
+    echo ""
     echo "Your zip file is stored in the path: ${path}"
     exit	
 }
 
 echo "#######################################"
-PS3="Server Setup Script - Pick an option: "
+PS3="zippity, zip that share up! - Pick an option: "
 options=("Zip Structure for Client" "Zip Struture for Archiving")
 select opt in "${options[@]}" "Quit"; do
 
