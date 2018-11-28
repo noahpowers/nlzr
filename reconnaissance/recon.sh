@@ -89,7 +89,7 @@ function webappHosting() {
     for z in $(cat ${domains});
         do 
             echo $'\n###########################\n' >> domain-ownership.txt
-            whois $z |grep -E "Domain\ Name|Registrar:|Registrant\ Organization|Registrant\ Admin|Tech\ Organization|Name\ Server" >> domain-ownership.txt
+            whois $z | grep -iv "No match for" | grep -E "Domain\ Name|Registrar:|Registrant\ Organization|Registrant\ Admin|Tech\ Organization|Name\ Server" >> domain-ownership.txt
             nslookup $z | grep -E -iv "server|#|non-authoritative" >> domain-ownership.txt
             y=$( nslookup ${z} | grep -E -iv "server|#|non-authoritative|name" | cut -d" " -f2 )
             x=$(echo ${y} | cut -d" " -f2 )
