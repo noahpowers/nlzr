@@ -15,6 +15,8 @@ methods = Methods()
 with open(sys.argv[1]) as f:
     for line in f:
         line = line.strip()
+        ### Need to slow it down a little so it doesn't trip Cloudflare
+        time.sleep(1)
         resource = methods.setAttr('breachedaccount/' + line)
         emailresults = methods.GET(resource)
         if emailresults is not "false":
