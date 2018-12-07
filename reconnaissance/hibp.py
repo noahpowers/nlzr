@@ -1,6 +1,12 @@
 from hibpAPI import *
+import argparse
 
 begin = time.time()
+
+parser = argparse.ArgumentParser(description='Checks list of email addresses against haveibeenpwned.com')
+parser.add_argument('-e', action="store", dest="email", required=True, default="/root/emails.txt", help="Text File with one Email Addres per line")
+
+results = parser.parse_args()
 
 ## hard-coded email address for testing purposes
 #email = "person@somedomain.com"
@@ -12,7 +18,7 @@ prop = ID()
 emailCount = 0
 breachList = []
 methods = Methods()
-with open(sys.argv[1]) as f:
+with open(results.email) as f:
     for line in f:
         line = line.strip()
         ### Need to slow it down a little so it doesn't trip Cloudflare
