@@ -17,6 +17,7 @@ function install-SimplyEmail() {
     echo ""
     dir=$(pwd)
     cd ~
+    pip install docx2txt pdfminer fake_useragent
     git clone https://github.com/killswitch-GUI/SimplyEmail
     cd SimplyEmail
     bash setup/setup.sh
