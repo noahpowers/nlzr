@@ -30,44 +30,62 @@ function gatherDomains() {
     read -p "Enter a domain: " -r name
     dir=$(pwd)
     cd ~
-    subdomainFile=$(find -name "subdomains.py")
     sublist3rLocation=$(find -name "Sublist3r")
-    cp $subdomainFile $sublist3rLocation 
     cd $sublist3rLocation
+    test -f ./subdomains.py
+    cmd=$(test -f ./subdomains.py)
+    cmd2=$(echo $?)
+    if [ $cmd2 -eq 1 ]; then
+        cd ~
+        subdomainFile=$(find -name "subdomains.py")
+        cp $subdomainFile $sublist3rLocation 
+        cd $sublist3rLocation
+    fi
     path2=$(pwd)
-    echo "#,Domain Name,IP Address" > ${name}-DomainNames.csv
-    echo "Subnet,Number of Names Discovered,Min IP,Max IP" > ${name}-DomainSubnets.csv
+    echo "#,Domain Name,IP Address" > ${dir}/${name}-DomainNames.csv
+    echo "Subnet,Number of Names Discovered,Min IP,Max IP" > ${dir}/${name}-DomainSubnets.csv
     ipaddr=$(nslookup $name | grep "Address" | grep -iv "#" | cut -d" " -f2)
     count=1
-    echo "$count,$name,$ipaddr" >> ${name}-DomainNames.csv
+    echo "$count,$name,$ipaddr" >> ${dir}/${name}-DomainNames.csv
     python subdomains.py $name
-    echo "$name" >> ${name}_subdomains.txt
-    for subname in $(cat ${name}_subdomains.txt);
+    mv ${name}_subdomains.txt ${dir}/
+    echo "$name" >> ${dir}/${name}_subdomains.txt
+    for subname in $(cat ${dir}/${name}_subdomains.txt);
     do
         count=$[count + 1]
         ipaddr=$( nslookup ${subname} | grep "Address" | grep -iv "#" | cut -d" " -f2 | grep -iv ":" )
-        cidr=$( whois $ipaddr |grep CIDR | cut -d" " -f12 )
-        prefix=$( echo $cidr | cut -d"/" -f2 )
-        echo "$count,$subname,$ipaddr" >> ${name}-DomainNames.csv
-        echo "$cidr,$subname,," >> ${name}-DomainSubnets.csv
+        ipaddr2=$( echo ${ipaddr} )
+        pattern=" |'"
+        if [[ $ipaddr2 =~ $pattern ]]; then
+            ip1=$(echo ${ipaddr2} | cut -d" " -f1)
+            ip2=$(echo ${ipaddr2} | cut -d" " -f2)
+            cidr1=$( whois ${ip1} |grep CIDR | cut -d" " -f12 )
+            prefix1=$( echo ${cidr1} | cut -d"/" -f2 )
+            cidr2=$( whois ${ip2} |grep CIDR | cut -d" " -f12 )
+            prefix2=$( echo ${cidr2} | cut -d"/" -f2 )
+            echo "$cidr1,$subname,," >> ${dir}/${name}-DomainSubnets.csv
+            echo "$cidr2,$subname,," >> ${dir}/${name}-DomainSubnets.csv
+        else
+            cidr=$( whois $ipaddr |grep CIDR | cut -d" " -f12 )
+            prefix=$( echo $cidr | cut -d"/" -f2 )
+            echo "$cidr,$subname,," >> ${dir}/${name}-DomainSubnets.csv
+        fi
+        echo "$count,$subname,$ipaddr2" >> ${dir}/${name}-DomainNames.csv
+        
     done
     cd ~
-    sublist3rLocation=$(find -name "Sublist3r")
     echo $'\n'
-    echo "File stored in directory: ${path2} "
+    echo "File stored in directory: ${dir} "
     echo $'\n'
     cd $dir
 }
 
 function findEmails() {
     echo ""
-    #domainfile="/root/*_subdomains.txt.txt"
     read -p "Enter Path to File Containing Domains [full path]: " -r targetsfile
     pip install BeautifulSoup
     dir=$(pwd)
     cd ~
-    #path=$(find -name SimplyEmail)
-    #cd $path
     cd ~/SimplyEmail
     for z in $(cat $targetsfile);
         do 
@@ -81,22 +99,26 @@ function findEmails() {
 }
 
 function webappHosting() {
-    echo ""
-    rm domain-ownership.txt 2>&1
+    echo ""    
     apt-get install -qq -y jq
     echo ""
     path=$(pwd)
+    read -p $'Enter the name of your parent domain (e.g., google.com):  \n' -r parentname
     read -p $'Enter full path file location for domain file (e.g., /root/domains.txt):  \n' -r domains
-    for z in $(cat ${domains});
-        do 
-            echo $'\n###########################\n' >> domain-ownership.txt
-            whois $z | grep -iv "No match for" | grep -E "Domain\ Name|Registrar:|Registrant\ Organization|Registrant\ Admin|Tech\ Organization|Name\ Server" >> domain-ownership.txt
-            nslookup $z | grep -E -iv "server|#|non-authoritative" >> domain-ownership.txt
-            y=$( nslookup ${z} | grep -E -iv "server|#|non-authoritative|name" | cut -d" " -f2 )
-            x=$(echo ${y} | cut -d" " -f2 )
-            curl ipinfo.io/$x | jq '.ip,.org,.hostname,.city,.region' >> domain-ownership.txt
+    cmd=$(test -f ./${parentname}_domain-ownership.txt)
+    cmd2=$(echo $?)
+    if [ $cmd2 -eq 1 ]; then
+        rm ${parentname}_domain-ownership.txt
+    fi
+    for z in $(cat ${domains}); do
+        echo $'\n###########################\n' >> ${parentname}_domain-ownership.txt
+        whois $z | grep -iv "No match for" | grep -E "Domain\ Name|Registrar:|Registrant\ Organization|Registrant\ Admin|Tech\ Organization|Name\ Server" >> ${parentname}_domain-ownership.txt
+        nslookup $z | grep -E -iv "server|#|non-authoritative" >> ${parentname}_domain-ownership.txt
+        y=$( nslookup ${z} | grep -E -iv "server|#|non-authoritative|name" | cut -d" " -f2 )
+        x=$(echo ${y} | cut -d" " -f2 )
+        curl -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/17.17134" ipinfo.io/$x | jq '.ip,.org,.hostname,.city,.region' >> ${parentname}_domain-ownership.txt
     done
-    sed -i 's/\ \ \ //g' domain-ownership.txt
+    sed -i 's/\ \ \ //g' ${parentname}_domain-ownership.txt
     echo $'\nWeb App domain hosting information is stored in domain-ownership.txt\n'
 }
 
