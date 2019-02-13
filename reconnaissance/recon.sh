@@ -116,7 +116,7 @@ function webappHosting() {
         nslookup $z | grep -E -iv "server|#|non-authoritative" >> ${parentname}_domain-ownership.txt
         y=$( nslookup ${z} | grep -E -iv "server|#|non-authoritative|name" | cut -d" " -f2 )
         x=$(echo ${y} | cut -d" " -f2 )
-        curl -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/17.17134" ipinfo.io/$x | jq '.ip,.org,.hostname,.city,.region' >> ${parentname}_domain-ownership.txt
+        curl ipinfo.io/$x | jq '.ip,.org,.hostname,.city,.region' >> ${parentname}_domain-ownership.txt
     done
     sed -i 's/\ \ \ //g' ${parentname}_domain-ownership.txt
     echo $'\nWeb App domain hosting information is stored in domain-ownership.txt\n'
