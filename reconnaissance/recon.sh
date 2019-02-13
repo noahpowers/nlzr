@@ -107,7 +107,7 @@ function webappHosting() {
     read -p $'Enter full path file location for domain file (e.g., /root/domains.txt):  \n' -r domains
     cmd=$(test -f ./${parentname}_domain-ownership.txt)
     cmd2=$(echo $?)
-    if [ $cmd2 -eq 1 ]; then
+    if [ $cmd2 -eq 0 ]; then
         rm ${parentname}_domain-ownership.txt
     fi
     for z in $(cat ${domains}); do
