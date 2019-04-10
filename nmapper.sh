@@ -94,8 +94,31 @@ function IDSfullscan() {
     top
 }
 
+function udpscan() {
+    read -p "Enter your firstname (all lowercase letters):  " -r myname
+    read -p "Enter the name/acronymn of your client [e.g. ACME]:  " -r CLIENT
+    read -p "Enter the full path and filename for you targets file [e.g. /root/targs.txt]:  " -r targetlist
+    cp $targetlist ~
+    cd ~
+
+    split -n 10 $targetlist
+
+    screen -S nmapr-01 -d -m nmap -Pn -sU -p 1-1000,5353,1900 --oA $CLIENT-$myname-01-UDP  -vvv -iL xaa
+    screen -S nmapr-02 -d -m nmap -Pn -sU -p 1-1000,5353,1900 --oA $CLIENT-$myname-02-UDP  -vvv -iL xab
+    screen -S nmapr-03 -d -m nmap -Pn -sU -p 1-1000,5353,1900 --oA $CLIENT-$myname-03-UDP  -vvv -iL xac
+    screen -S nmapr-04 -d -m nmap -Pn -sU -p 1-1000,5353,1900 --oA $CLIENT-$myname-04-UDP  -vvv -iL xad
+    screen -S nmapr-05 -d -m nmap -Pn -sU -p 1-1000,5353,1900 --oA $CLIENT-$myname-05-UDP  -vvv -iL xae
+    screen -S nmapr-06 -d -m nmap -Pn -sU -p 1-1000,5353,1900 --oA $CLIENT-$myname-06-UDP  -vvv -iL xaf
+    screen -S nmapr-07 -d -m nmap -Pn -sU -p 1-1000,5353,1900 --oA $CLIENT-$myname-07-UDP  -vvv -iL xag
+    screen -S nmapr-08 -d -m nmap -Pn -sU -p 1-1000,5353,1900 --oA $CLIENT-$myname-08-UDP  -vvv -iL xah
+    screen -S nmapr-09 -d -m nmap -Pn -sU -p 1-1000,5353,1900 --oA $CLIENT-$myname-09-UDP  -vvv -iL xai
+    screen -S nmapr-10 -d -m nmap -Pn -sU -p 1-1000,5353,1900 --oA $CLIENT-$myname-10-UDP  -vvv -iL xaj
+
+    top
+}
+
 PS3="Nmapper Script - Pick an option: "
-options=("Discovery Scan" "Full Port Scan" "IDS Evade Discovery Port" "IDS Evade Full Port")
+options=("Discovery Scan" "Full Port Scan" "IDS Evade Discovery Port" "IDS Evade Full Port" "UDP Scan")
 select opt in "${options[@]}" "Quit"; do
 
     case "$REPLY" in
@@ -108,6 +131,8 @@ select opt in "${options[@]}" "Quit"; do
     3) IDSdiscoveryscan;;
     
     4) IDSfullscan;;
+
+    5) udpscan;;
 
     $(( ${#options[@]}+1 )) ) echo "Thanks for using nmapper!"; break;;
     *) echo "Invalid option. Try another one.";continue;;
