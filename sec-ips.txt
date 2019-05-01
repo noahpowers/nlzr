@@ -15,8 +15,8 @@
 40.124.0.0/16   #Microsoft
 40.125.0.0/17   #Microsoft
 
+...For Reputation Analysis (allow!)
 107.178.194.0/24  #Google
-
 208.87.139.67   #WebRoot
 66.35.53.250    #WebRoot
 208.90.56.153   #Cisco IronPort
