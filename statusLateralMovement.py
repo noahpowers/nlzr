@@ -3,9 +3,7 @@
 ###                                                                        #
 ############################################################################
 ###                                                                        #
-### Returns the status of persistence conducted.  Dates ordered old -> new.#
-### Very possible, for the same IP to have many entries...                 #
-### One for creation, another for deletion, and maybe others for diff PIDs.#
+### Returns the status of lateral movement methods.                        #
 ###                                                                        #
 ############################################################################
 
