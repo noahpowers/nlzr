@@ -29,8 +29,6 @@ for line in lines:
     list.append(dash)
 file.close()
 
-print(list)
-
 subprocess.call('rm roughLogs.txt', shell=True)
 
 interimList = []
