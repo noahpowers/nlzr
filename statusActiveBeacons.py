@@ -1,8 +1,6 @@
 ############################################################################
-### Written by Noah Powers, Delta Risk (LLC)                               #
+### Written by Noah Powers                                                 #
 ###                                                                        #
-### Designed to be run on the CS Team Server                               #
-### Tested in a limited set of logs (one week worth) with CS version 3.3   #
 ############################################################################
 ###                                                                        #
 ### Returns the status of beacons that have phoned home.                   #
@@ -12,8 +10,7 @@
 import os
 import subprocess
 
-query = "grep -r -i 'checkin' | grep -E -i -v '(task|input|unknown)' | cut -d'/' -f2-4 | cut -d':' -f1-4 | sed 's/\//\ /g' | sed 's/\.log:/\ /g' | cut -d' ' -f1-5 | sort -k3 > roughLogs.txt"
-
+query = "grep -r -i 'checkin' | grep -E -i -v '(task|input|unknown|keystroke|checking)' | cut -d'/' -f2-4 | cut -d':' -f1-4 | sed 's/\//\ /g' | sed 's/\.log:/\ /g' | cut -d' ' -f1-5 | sort -k3 > roughLogs.txt"
 logLocation = '/root/cobaltstrike/logs/'
 
 os.chdir(logLocation)
