@@ -15,7 +15,7 @@ import time
 
 query = 'grep -r -E -i "psexec|psexec_psh|wmi" | grep -E -iv "WmiPrvSE|servicename|path|abusefunction|get" | grep -i "input" >> roughLogs.txt'
 
-logLocation = '/mnt/share/Working/CobaltStrike/External/RawData/logs'
+logLocation = '/root/cobaltstrike/logs/'
 
 os.chdir(logLocation)
 
