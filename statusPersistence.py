@@ -1,5 +1,5 @@
 ############################################################################
-### Written by Noah Powers, Delta Risk (LLC)                               #
+### Written by Noah Powers                                                 #
 ###                                                                        #
 ### Designed to be run on the CS Team Server                               #
 ### Tested in a limited set of logs (one week worth) with CS version 3.3   #
