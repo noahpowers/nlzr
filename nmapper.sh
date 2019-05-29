@@ -7,7 +7,7 @@ function discoveryscan() {
     cp $targetlist ~
     cd ~
 
-    split -n l\10 $targetlist
+    split -n l/10 $targetlist
 
     screen -S nmapr-01 -d -m nmap -Pn -n -sS -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-01-DISCOVERY -vvv --open -iL xaa
     screen -S nmapr-02 -d -m nmap -Pn -n -sS -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-02-DISCOVERY  -vvv --open -iL xab
@@ -30,7 +30,7 @@ function fullscan() {
     cp $targetlist ~
     cd ~
 
-    split -n l\10 $targetlist
+    split -n l/10 $targetlist
 
     screen -S nmapr-01 -d -m nmap -Pn -n -sS -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-01-FULL -vvv --open -iL xaa
     screen -S nmapr-02 -d -m nmap -Pn -n -sS -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-02-FULL  -vvv --open -iL xab
@@ -54,7 +54,7 @@ function IDSdiscoveryscan() {
     cp $targetlist ~
     cd ~
     
-    split -n l\10 $targetlist
+    split -n l/10 $targetlist
     
     screen -S nmapr-01 -d -m nmap -Pn -n -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-01-DISCOVERY -vvv --open -iL xaa
     screen -S nmapr-02 -d -m nmap -Pn -n -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-02-DISCOVERY  -vvv --open -iL xab
@@ -78,7 +78,7 @@ function IDSfullscan() {
     cp $targetlist ~
     cd ~
 
-    split -n l\10 $targetlist
+    split -n l/10 $targetlist
 
     screen -S nmapr-01 -d -m nmap -Pn -n -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-01-FULL -vvv --open -iL xaa
     screen -S nmapr-02 -d -m nmap -Pn -n -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-02-FULL  -vvv --open -iL xab
@@ -101,7 +101,7 @@ function udpscan() {
     cp $targetlist ~
     cd ~
 
-    split -n l\10 $targetlist
+    split -n l/10 $targetlist
 
     screen -S nmapr-01 -d -m nmap -Pn -sU -p 1-1000,5353,1900 --oA $CLIENT-$myname-01-UDP  -vvv -iL xaa
     screen -S nmapr-02 -d -m nmap -Pn -sU -p 1-1000,5353,1900 --oA $CLIENT-$myname-02-UDP  -vvv -iL xab
