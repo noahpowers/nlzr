@@ -42,17 +42,21 @@ while count < (len(list) - 1):
         beaconPID_temp = list[count][2].split('.log:')[0]
         beaconPID = beaconPID_temp.split('_')[1]
         reason = list[count][2].split('.log:')[1]
+        btime = list[count][3].split(' ')[1]
+        operator_t0 = list[count][3].split(' ')[4]
+        operator_t1 = operator_t0.split('<')[1]
+        operator = operator_t1.split('>')[0]
         command = list[count][3].split('>')[1]
-        interimList.append([date,IP,beaconPID,command])
+        interimList.append([date,btime,IP,beaconPID,command, operator])
         count += 1
 count = 0
 
 print ""
 print ''' 
-################################################################################
-   DTG           IP              BEACON-PID                 METHOD
---------------------------------------------------------------------------------
-################################################################################
+###################################################################################################
+   DATE       TIME           IP          BEACON-PID           METHOD                OPERATOR
+--------------------------------------------------------------------------------------------------
+###################################################################################################
 '''
 
 for item in interimList:
