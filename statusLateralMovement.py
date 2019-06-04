@@ -57,8 +57,12 @@ while count < (len(list) - 1):
 count = 0
 
 ## Takes the interimList contents and sorts them; sorted by first element and then second (date/time).
+tempList = []
 temp = sorted(interimList,key=itemgetter(0,1))
 
+for item in temp: 
+        if item not in tempList: 
+            tempList.append(item)
 print ""
 print ''' 
 #########################################################################################
