@@ -10,6 +10,7 @@
 import os
 import subprocess
 import time
+from operator import itemgetter
 
 query = 'grep -r -E -i "psexec|psexec_psh|wmi" | grep -E -iv "WmiPrvSE|servicename|path|abusefunction|get" | grep -i "input" >> roughLogs.txt'
 
@@ -37,7 +38,11 @@ while count < (len(list) - 1):
     if len(list[count]) > 4:
         count += 1
     else:
-        date = list[count][0]
+## This if/else statement is required to get around how some log entries contain an additional ':' that we must get rid of
+        if ":" in list[count][0]:
+            date  = list[count][0].split(':')[1]
+        else:
+            date = list[count][0]
         fromIP= list[count][1]
         spawnPID_temp = list[count][2].split('.log:')[0]
         spawnPID = spawnPID_temp.split('_')[1]
@@ -51,6 +56,9 @@ while count < (len(list) - 1):
         count += 1
 count = 0
 
+## Takes the interimList contents and sorts them; sorted by first element and then second (date/time).
+temp = sorted(interimList,key=itemgetter(0,1))
+
 print ""
 print ''' 
 #########################################################################################
@@ -59,7 +67,7 @@ print '''
 #########################################################################################
 '''
 
-for item in interimList:
+for item in temp:
     print item
 print '''
 
