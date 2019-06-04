@@ -10,10 +10,12 @@
 import os
 import subprocess
 import time
+from operator import itemgetter
 
 query = 'grep -r -E -i "pth|make_token|steal_token|dcsync" | grep -E -iv "task|error|binary|note" | grep -E -i "input" > roughLogs.txt'
 
-logLocation = '/root/cobaltstrike/logs'
+#logLocation = '/root/cobaltstrike/logs'
+logLocation = '/root/CobaltStrike/Internal/RawData/logs'
 
 os.chdir(logLocation)
 
@@ -37,7 +39,11 @@ while count < (len(list) - 1):
     if len(list[count]) < 2:
         count += 1
     else:
-        date = list[count][0]
+## This if/else statement is required to get around how some log entries contain an additional ':' that we must get rid of
+        if ":" in list[count][0]:
+            date  = list[count][0].split(':')[1]
+        else:
+            date = list[count][0]
         IP= list[count][1]
         beaconPID_temp = list[count][2].split('.log:')[0]
         beaconPID = beaconPID_temp.split('_')[1]
@@ -47,9 +53,12 @@ while count < (len(list) - 1):
         operator_t1 = operator_t0.split('<')[1]
         operator = operator_t1.split('>')[0]
         command = list[count][3].split('>')[1]
-        interimList.append([date,btime,IP,beaconPID,command, operator])
+        interimList.append([date,btime,IP,beaconPID,command,operator])
         count += 1
 count = 0
+
+## Takes the interimList contents and sorts them; sorted by first element and then second (date/time).
+temp = sorted(interimList,key=itemgetter(0,1))
 
 print ""
 print ''' 
@@ -59,7 +68,7 @@ print '''
 ###################################################################################################
 '''
 
-for item in interimList:
+for item in temp:
     print item
 print '''
 
