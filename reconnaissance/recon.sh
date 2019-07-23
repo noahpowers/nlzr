@@ -59,20 +59,23 @@ function gatherDomains() {
         whois_org=$( whois ${name} | grep "Registrant Organization" | cut -d" " -f3- )
         if [[ $ipaddr2 =~ $pattern ]]; then
             ip1=$(echo ${ipaddr2} | cut -d" " -f1)
+            whois_org1=$( whois ${ip1} | grep "Organization:" | cut -d" " -f4- )
             ip2=$(echo ${ipaddr2} | cut -d" " -f2)
+            whois_org2=$( whois ${ip2} | grep "Organization:" | cut -d" " -f4- )
             basecidr1=$( whois ${ip1} |grep CIDR | cut -d" " -f12- )
             cidr1=$( echo $basecidr1 | sed 's/\,//g' | sort -u )
             prefix1=$( echo ${cidr1} | cut -d"/" -f2 )
             basecidr2=$( whois ${ip2} |grep CIDR | cut -d" " -f12- )
             cidr2=$( echo $basecidr2 | sed 's/\,//g' | sort -u )
             prefix2=$( echo ${cidr2} | cut -d"/" -f2 )
-            echo "$ip1,$subname,$cidr1,$whois_org" >> ${dir}/${name}-DomainSubnets.csv
-            echo "$ip2,$subname,$cidr2,$whois_org" >> ${dir}/${name}-DomainSubnets.csv
+            echo "$ip1,$subname,$cidr1,$whois_org,$whois_org2" >> ${dir}/${name}-DomainSubnets.csv
+            echo "$ip2,$subname,$cidr2,$whois_org,$whois_org2" >> ${dir}/${name}-DomainSubnets.csv
         else
             basecidr=$( whois $ipaddr |grep CIDR | cut -d" " -f12- )
+            whois_org1=$( whois ${ipaddr} | grep "Organization:" | cut -d" " -f4- )
             cidr=$( echo $basecidr | sed 's/\,//g' | sort -u )
             prefix=$( echo $cidr | cut -d"/" -f2 )
-            echo "$ipaddr,$subname,$cidr,$whois_org" >> ${dir}/${name}-DomainSubnets.csv
+            echo "$ipaddr,$subname,$cidr,$whois_org,$whois_org1" >> ${dir}/${name}-DomainSubnets.csv
         fi
         echo "$count,$subname,$ipaddr2" >> ${dir}/${name}-DomainNames.csv
         
@@ -82,24 +85,6 @@ function gatherDomains() {
     echo "File stored in directory: ${dir} "
     echo $'\n'
     cd $dir
-}
-
-function findEmails() {
-    echo ""
-    read -p "Enter Path to File Containing Domains [full path]: " -r targetsfile
-    pip install BeautifulSoup
-    dir=$(pwd)
-    cd ~
-    cd ~/SimplyEmail
-    for z in $(cat $targetsfile);
-        do 
-        python SimplyEmail.py -e ${z} -all --json ${z}-emails.txt
-    done
-    echo "[+] Email files stored in path: ${path} "
-    cp -a *-emails.txt $dir
-    rm *-emails.txt
-    cd $dir
-    echo ""
 }
 
 function webappHosting() {
