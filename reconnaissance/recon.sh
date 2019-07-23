@@ -43,7 +43,7 @@ function gatherDomains() {
     fi
     path2=$(pwd)
     echo "#,Domain Name,IP Address" > ${dir}/${name}-DomainNames.csv
-    echo "Subnet,Number of Names Discovered,Min IP,Max IP" > ${dir}/${name}-DomainSubnets.csv
+    echo "IPAddress,Number of Names Discovered,Subnet,Organization" > ${dir}/${name}-DomainSubnets.csv
     ipaddr=$(nslookup $name | grep "Address" | grep -iv "#" | cut -d" " -f2)
     count=1
     echo "$count,$name,$ipaddr" >> ${dir}/${name}-DomainNames.csv
@@ -56,6 +56,7 @@ function gatherDomains() {
         ipaddr=$( nslookup ${subname} | grep "Address" | grep -iv "#" | cut -d" " -f2 | grep -iv ":" )
         ipaddr2=$( echo ${ipaddr} )
         pattern=" |'"
+        whois_org=$( whois ${name} | grep "Registrant Organization" | cut -d" " -f3- )
         if [[ $ipaddr2 =~ $pattern ]]; then
             ip1=$(echo ${ipaddr2} | cut -d" " -f1)
             ip2=$(echo ${ipaddr2} | cut -d" " -f2)
@@ -63,12 +64,12 @@ function gatherDomains() {
             prefix1=$( echo ${cidr1} | cut -d"/" -f2 )
             cidr2=$( whois ${ip2} |grep CIDR | cut -d" " -f12 )
             prefix2=$( echo ${cidr2} | cut -d"/" -f2 )
-            echo "$cidr1,$subname,," >> ${dir}/${name}-DomainSubnets.csv
-            echo "$cidr2,$subname,," >> ${dir}/${name}-DomainSubnets.csv
+            echo "$ip1,$subname,$cidr1,$whois_org" >> ${dir}/${name}-DomainSubnets.csv
+            echo "$ip2,$subname,$cidr2,$whois_org" >> ${dir}/${name}-DomainSubnets.csv
         else
             cidr=$( whois $ipaddr |grep CIDR | cut -d" " -f12 )
             prefix=$( echo $cidr | cut -d"/" -f2 )
-            echo "$cidr,$subname,," >> ${dir}/${name}-DomainSubnets.csv
+            echo "$ipaddr,$subname,$cidr,$whois_org" >> ${dir}/${name}-DomainSubnets.csv
         fi
         echo "$count,$subname,$ipaddr2" >> ${dir}/${name}-DomainNames.csv
         
