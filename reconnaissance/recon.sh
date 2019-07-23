@@ -60,14 +60,17 @@ function gatherDomains() {
         if [[ $ipaddr2 =~ $pattern ]]; then
             ip1=$(echo ${ipaddr2} | cut -d" " -f1)
             ip2=$(echo ${ipaddr2} | cut -d" " -f2)
-            cidr1=$( whois ${ip1} |grep CIDR | cut -d" " -f12 )
+            basecidr1=$( whois ${ip1} |grep CIDR | cut -d" " -f12- )
+            cidr1=$( echo $basecidr1 | sed 's/\,//' | sed 's/\,//' | sort -u )
             prefix1=$( echo ${cidr1} | cut -d"/" -f2 )
-            cidr2=$( whois ${ip2} |grep CIDR | cut -d" " -f12 )
+            basecidr2=$( whois ${ip2} |grep CIDR | cut -d" " -f12- )
+            cidr2=$( echo $basecidr2 | sed 's/\,//' | sed 's/\,//' | sort -u )
             prefix2=$( echo ${cidr2} | cut -d"/" -f2 )
             echo "$ip1,$subname,$cidr1,$whois_org" >> ${dir}/${name}-DomainSubnets.csv
             echo "$ip2,$subname,$cidr2,$whois_org" >> ${dir}/${name}-DomainSubnets.csv
         else
-            cidr=$( whois $ipaddr |grep CIDR | cut -d" " -f12 )
+            basecidr=$( whois $ipaddr |grep CIDR | cut -d" " -f12- )
+            cidr=$( echo $basecidr | sed 's/\,//' | sed 's/\,//' | sort -u )
             prefix=$( echo $cidr | cut -d"/" -f2 )
             echo "$ipaddr,$subname,$cidr,$whois_org" >> ${dir}/${name}-DomainSubnets.csv
         fi
