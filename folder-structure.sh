@@ -4,27 +4,30 @@ function create_structure() {
     echo $'\nONLY RUN THIS OPTION IF YOU WERE INSTRUCTED TO...\n\tThis option most likely does not apply to your situation!..!\n\t\tThe other options may still be helpful\n\n'
     sleep 2
     cd ~
+    mkdir -p "share/Data/Database"
     mkdir -p "share/Data/Network Mapping/Internal/Eyewitness/"
     mkdir -p "share/Data/Network Mapping/Internal/Nmap/"
     mkdir -p "share/Data/Network Mapping/External/Eyewitness/"
     mkdir -p "share/Data/Network Mapping/External/Nmap/"
-    mkdir -p "share/Data/Network Mapping/External/OSINT"
+    mkdir -p "share/Data/Network Mapping/External/OSINT/"
+    mkdir -p "share/Data/Penetration Test/Cobalt Strike/"
     mkdir -p "share/Data/Vulnerability Scanning/External/Nessus/"
     mkdir -p "share/Data/Vulnerability Scanning/External/Nikto/"
     mkdir -p "share/Data/Vulnerability Scanning/Internal/Nessus/"
     mkdir -p "share/Data/Vulnerability Scanning/Internal/Nikto/"
-    mkdir -p "share/Data/Web Application/External/BurpSuite/"
-    mkdir -p "share/Data/Web Application/Internal/BurpSuite/"
+    mkdir -p "share/Data/Web App/BurpSuite/"
+    mkdir -p "share/Data/Web App/Acunetix/"
+    mkdir -p "share/Data/Web App/Nikto/"
     mkdir -p "share/Data/Phishing/Targets/"
     mkdir -p "share/Data/Phishing/Templates/"
-    mkdir -p "share/Data/Phishing/Payloads/OLE/"
-    mkdir -p "share/Data/Phishing/Payloads/HTA/"
+    mkdir -p "share/Data/Phishing/Payloads/"
+    mkdir -p "share/Data/Wireless/"
     mkdir -p "share/Findings/Technical Overview/Attack Path/"
     mkdir -p "share/Findings/Technical Overview/Phishing"
     mkdir -p "share/Findings/Internal/"
     mkdir -p "share/Findings/External/"
     mkdir -p "share/Working/"
-    mkdir -p "share/Documentation/"
+    mkdir -p "share/Documentation/Reports/"
     cd ~/share/Findings/
     echo $'Affected Systems(comma delimited):\n{xxx.xxx.xxx.xxx, xxx.xxx.xxx.xxx}\n\nService/Services (comma delimited):\n{i.e. Penetration Testing (must match services catalog)}\n\nCustomer Specific Finding Description (one line): \n{Description of the finding with text unique to this RVA, if necessary}\n\nCustomer Specific Recommendation (one line):\n{Recommendation with text unique to this RVA, if necessary}\n\nScreenshot Description ("This screenshot shows...")\n{This screenshot shows a group of penguins having fun on the beach.}\n\nHVA Specific: {If this finding is HVA specific then replace this text with the HVA name (must match the HVA folder name in the "Attack Path" folder)}' > details.txt
 }
