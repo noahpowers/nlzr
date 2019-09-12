@@ -12,7 +12,7 @@ import subprocess
 import time
 from operator import itemgetter
 
-query = 'grep -r -E -i "pth|make_token|steal_token|dcsync" | grep -E -iv "task|error|binary|note" | grep -E -i "input" > roughLogs.txt'
+query = 'grep -r -E -i "pth|make_token|steal_token|dcsync|spawnas|runas" | grep -E -iv "task|error|binary|note" | grep -E -i "input" > roughLogs.txt'
 
 logLocation = '/root/cobaltstrike/logs'
 
