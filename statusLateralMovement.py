@@ -12,7 +12,7 @@ import subprocess
 import time
 from operator import itemgetter
 
-query = 'grep -r -E -i "psexec|psexec_psh|wmi|winrm" | grep -E -iv "WmiPrvSE|servicename|path|abusefunction|get" | grep -i "input" >> roughLogs.txt'
+query = 'grep -r -E -i "psexec|psexec_psh|wmi|winrm|execute-assembly" | grep -E -iv "WmiPrvSE|servicename|path|abusefunction|get" | grep -i "input" >> roughLogs.txt'
 
 logLocation = '/root/cobaltstrike/logs/'
 
