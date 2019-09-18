@@ -14,7 +14,7 @@ from operator import itemgetter
 
 query = 'grep -r -E -i "pth|make_token|steal_token|dcsync|spawnas|runas" | grep -E -iv "task|error|binary|note" | grep -E -i "input" > roughLogs.txt'
 
-logLocation = '/root/cobaltstrike/logs'
+logLocation = '/root/tools/cobaltstrike/logs'
 
 os.chdir(logLocation)
 
@@ -52,6 +52,22 @@ while count < (len(list) - 1):
         operator_t1 = operator_t0.split('<')[1]
         operator = operator_t1.split('>')[0]
         command = list[count][3].split('>')[1]
+        if "make_token" in command:
+            command = command[:-3]
+            command_1 = command.split(' ')[1]
+            command_2 = command.split(' ')[2]
+            command_3 = command.split(' ')[-1][:2] + "#" * 12
+            command = command_1 + " " + command_2 + " " + command_3
+        else:
+            command = command
+        if "pth" in command:
+            command = command[:-3]
+            command_1 = command.split(' ')[1]
+            command_2 = command.split(' ')[2]
+            command_3 = command.split(' ')[-1][:2] + "#" * 12
+            command = command_1 + " " + command_2 + " " + command_3
+        else:
+            command = command
         interimList.append([date,btime,IP,beaconPID,command,operator])
         count += 1
 count = 0
