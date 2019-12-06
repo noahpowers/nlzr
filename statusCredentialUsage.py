@@ -14,7 +14,7 @@ from operator import itemgetter
 
 query = 'grep -r -E -i "pth|make_token|steal_token|dcsync|spawnas|runas" | grep -E -iv "task|error|binary|note" | grep -E -i "input" > roughLogs.txt'
 
-logLocation = '/root/tools/cobaltstrike/logs'
+logLocation = '/root/cobaltstrike/logs'
 
 os.chdir(logLocation)
 
