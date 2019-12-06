@@ -1,8 +1,8 @@
 ############################################################################
-### Written by Noah Powers, Delta Risk (LLC)                               #
+### Written by Noah Powers,                                                #
 ###                                                                        #
 ### Designed to be run on the CS Team Server                               #
-### Tested in a limited set of logs (one week worth) with CS version 3.10  #
+###                                                                        #
 ############################################################################
 ###                                                                        #
 ### Returns the status of beacons that have phoned home.                   #
@@ -12,8 +12,8 @@
 import os
 import subprocess
 
-query = "grep -r -i 'beacon' | grep -i 'initial beacon from ' | grep -E -v -i '(rvauser)' | cut -d':' -f2,3 | cut -d' ' -f1,2,7-11 | sort > roughLogs.txt"
-query2 = "grep -r -i 'beacon' | grep -i 'initial beacon from ' | grep -E -v -i '(rvauser)' | cut -d' ' -f7,8 | cut -d'@' -f2 | cut -d' ' -f1 | wc -l"
+query = "grep -r -i 'beacon' | grep -i 'initial beacon from ' | grep -E -v -i '(rvauser)' | cut -d':' -f 2-4 | cut -d' ' -f 1,2,7-10 | sort > roughLogs.txt"
+query2 = "grep -r -i 'beacon' | grep -i 'initial beacon from ' | grep -E -v -i '(rvauser)' | cut -d':' -f 2-4 | cut -d' ' -f 1,2,7-10 | grep -r -i 'beacon' | grep -i 'initial beacon from ' | grep -E -v -i '(rvauser)' | cut -d' ' -f8-10 | cut -d'@' -f2 | cut -d' ' -f 1 | wc -l"
 query3 = "grep -r -i 'beacon' | grep -i 'initial beacon from ' | grep -E -v -i '(rvauser)' | cut -d' ' -f7,8 | cut -d'@' -f2 | cut -d' ' -f1 | sort | uniq | wc -l"
 
 print ""
@@ -44,16 +44,24 @@ subprocess.call('rm roughLogs.txt', shell=True)
 interimList = []
 count = 0
 while count < (len(list) - 1):
-    if len(list[count]) > 5:
+    if len(list[count]) > 6:
         count += 1
+    elif len(list[count]) == 6:
+        date = list[count][0]
+        time = list[count][1]
+        firstname = list[count][3]
+        lastname = list[count][4].split('@')[0]
+        ip = list[count][4].split('@')[1]
+        computer = list[count][5]
+        username = firstname + " " + lastname
+        interimList.append([date,time,username,ip,computer])
+        count +=1
     elif len(list[count]) == 5:
         date = list[count][0]
         time = list[count][1]
-        firstname = list[count][2]
-        lastname = list[count][3].split('@')[0]
+        username = list[count][3].split('@')[0]
         ip = list[count][3].split('@')[1]
         computer = list[count][4]
-        username = firstname + " " + lastname
         interimList.append([date,time,username,ip,computer])
         count +=1
     elif len(list[count]) == 4:
