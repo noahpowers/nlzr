@@ -14,7 +14,10 @@ import subprocess
 
 query = "grep -r -i 'beacon' | grep -i 'initial beacon from ' | grep -E -v -i '(rvauser)' | cut -d':' -f 2-4 | cut -d' ' -f 1,2,7-10 | sort > roughLogs.txt"
 query2 = "grep -r -i 'beacon' | grep -i 'initial beacon from ' | grep -E -v -i '(rvauser)' | cut -d':' -f 2-4 | cut -d' ' -f 1,2,7-10 | grep -r -i 'beacon' | grep -i 'initial beacon from ' | grep -E -v -i '(rvauser)' | cut -d' ' -f8-10 | cut -d'@' -f2 | cut -d' ' -f 1 | wc -l"
-query3 = "grep -r -i 'beacon' | grep -i 'initial beacon from ' | grep -E -v -i '(rvauser)' | cut -d' ' -f7,8 | cut -d'@' -f2 | cut -d' ' -f1 | sort | uniq | wc -l"
+query3 = "grep -r -i 'beacon' | grep -i 'initial beacon from ' | grep -E -v -i '(rvauser)' | cut -d' ' -f8-10 | sort | uniq | wc -l"
+
+logLocation = '/root/cobaltstrike/logs/'
+os.chdir(logLocation)
 
 print ""
 print 'Total Beacons: '
@@ -22,9 +25,9 @@ subprocess.call(query2, shell=True)
 print 'Total Unique Beacons: '
 subprocess.call(query3, shell=True)
 
-logLocation = '/root/cobaltstrike/logs/'
+#logLocation = '/root/tools/cobaltstrike/logs'
 
-os.chdir(logLocation)
+#os.chdir(logLocation)
 
 subprocess.call(query, shell=True)
 
