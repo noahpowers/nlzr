@@ -68,14 +68,14 @@ function gatherDomains() {
             basecidr2=$( whois ${ip2} |grep CIDR | cut -d" " -f12- )
             cidr2=$( echo $basecidr2 | sed 's/\,//g' | sort -u )
             prefix2=$( echo ${cidr2} | cut -d"/" -f2 )
-            echo "$ip1,$subname,$cidr1,$whois_org,$whois_org2" >> ${dir}/${name}-DomainSubnets.csv
-            echo "$ip2,$subname,$cidr2,$whois_org,$whois_org2" >> ${dir}/${name}-DomainSubnets.csv
+            echo "$ip1,$subname,$cidr1,\"$whois_org\",\"$whois_org2\"" >> ${dir}/${name}-DomainSubnets.csv
+            echo "$ip2,$subname,$cidr2,\"$whois_org\",\"$whois_org2\"" >> ${dir}/${name}-DomainSubnets.csv
         else
             basecidr=$( whois $ipaddr |grep CIDR | cut -d" " -f12- )
             whois_org1=$( whois ${ipaddr} | grep "Organization:" | cut -d" " -f4- )
             cidr=$( echo $basecidr | sed 's/\,//g' | sort -u )
             prefix=$( echo $cidr | cut -d"/" -f2 )
-            echo "$ipaddr,$subname,$cidr,$whois_org,$whois_org1" >> ${dir}/${name}-DomainSubnets.csv
+            echo "$ipaddr,$subname,$cidr,\"$whois_org\",\"$whois_org1\"" >> ${dir}/${name}-DomainSubnets.csv
         fi
         echo "$count,$subname,$ipaddr2" >> ${dir}/${name}-DomainNames.csv
         
