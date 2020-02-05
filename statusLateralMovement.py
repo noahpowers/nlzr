@@ -35,7 +35,7 @@ subprocess.call('rm roughLogs.txt', shell=True)
 interimList = []
 count = 0
 while count < (len(list) - 1):
-    if len(list[count]) > 4:
+    if len(list[count]) > 15:
         count += 1
     else:
 ## This if/else statement is required to get around how some log entries contain an additional ':' that we must get rid of
@@ -47,11 +47,18 @@ while count < (len(list) - 1):
         spawnPID_temp = list[count][2].split('.log:')[0]
         spawnPID = spawnPID_temp.split('_')[1]
         btime = list[count][3].split(' ')[1]
-        reason = list[count][2].split('.log:')[1]
+#        reason = list[count][2].split('.log:')[1]
         operator_t0 = list[count][3].split(' ')[4]
         operator_t1 = operator_t0.split('<')[1]
         operator = operator_t1.split('>')[0]
-        command = list[count][3].split('> ')[1]
+        command0 = list[count][3].split('> ')[1]
+        lengthList = len(list[count]) - 1
+        if lengthList > 4:
+            tempCount = 4
+            while tempCount < lengthList:
+                command0 += list[count][tempCount]
+                tempCount += 1
+        command = command0
         interimList.append([date,btime,spawnPID,fromIP,command,operator])
         count += 1
 count = 0
@@ -75,4 +82,3 @@ for item in tempList:
     print item
 print '''
 
-'''
