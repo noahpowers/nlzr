@@ -50,6 +50,10 @@ function gatherDomains() {
     python subdomains.py $name
     mv ${name}_subdomains.txt ${dir}/
     echo "$name" >> ${dir}/${name}_subdomains.txt
+    sed -i 's/<BR>/\n/g' ${dir}/${name}_subdomains.txt
+    cat ${dir}/${name}_subdomains.txt | uniq >> raw000.txt
+    cat raw000.txt > ${dir}/${name}_subdomains.txt
+    rm raw000.txt
     for subname in $(cat ${dir}/${name}_subdomains.txt);
     do
         count=$[count + 1]
