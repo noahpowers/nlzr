@@ -4,8 +4,10 @@ function discoveryscan() {
     read -p "Enter your firstname (all lowercase letters):  " -r myname
     read -p "Enter the name/acronymn of your client [e.g. ACME]:  " -r CLIENT
     read -p "Enter the full path and filename for you targets file [e.g. /root/targs.txt]:  " -r targetlist
-    cp $targetlist ~
-    cd ~
+    read -p "Enter the output directory [e.g. /root/]:  " -r outputdir
+    mkdir -p $outputdir
+    cp $targetlist $outputdir
+    cd $outputdir
 
     split -n l/10 $targetlist
 
@@ -27,8 +29,10 @@ function fullscan() {
     read -p "Enter your firstname (all lowercase letters):  " -r myname
     read -p "Enter the name/acronymn of your client [e.g. ACME]:  " -r CLIENT
     read -p "Enter the full path and filename for you targets file [e.g. /root/targs.txt]:  " -r targetlist
-    cp $targetlist ~
-    cd ~
+    read -p "Enter the output directory [e.g. /root/]:  " -r outputdir
+    mkdir -p $outputdir
+    cp $targetlist $outputdir
+    cd $outputdir
 
     split -n l/10 $targetlist
 
