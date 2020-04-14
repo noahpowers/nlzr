@@ -5,6 +5,7 @@ import pathlib
 import re
 import time
 
+# Requires full path to include a trailing slash
 searchPath = "<insert path here>"
 
 #rawFolders is a temp storage list
