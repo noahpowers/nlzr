@@ -49,9 +49,6 @@ while count < len(finalRead[0]):
     rawTime = finalRead[0][count].split(',')[0]
     command = finalRead[0][count].split(',')[1]
     timestamp = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(int(rawTime)))
-    # print(timestamp)
     count += 1
     print(str(timestamp) + ' ' + str(command))
-    file = open("CommandHistory.txt", a)
-    file.close
     
