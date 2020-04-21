@@ -3,7 +3,8 @@
 import os
 import time
 
-## UN-comment the following three (3) lines if this is your first time running this script
+## if this is your first time running this script, run the three (3) commands below.
+## however, rerun the "history -w" one yourself in the terminal. For some reason it doesn't seem to take from python...
 # os.system("export HISTTIMEFORMAT=\"%F %T \"")
 # os.system("echo '\\nexport HISTTIMEFORMAT=\"%F %T \"' >> ~/.bashrc")
 # os.system("history -w")
@@ -12,6 +13,7 @@ import time
 ## Idea is for pentesters to save their command history down, then sync command history.
 
 ## reads the "combined" raw history file into script
+## change the path below...
 file = "</path/to/raw.history/>"
 
 fileread = open(file, 'r')
@@ -50,3 +52,6 @@ while count < len(finalRead[0]):
     # print(timestamp)
     count += 1
     print(str(timestamp) + ' ' + str(command))
+    file = open("CommandHistory.txt", a)
+    file.close
+    
