@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from collections import OrderedDict
 import os
 import time
 
@@ -41,7 +42,7 @@ for item in modRead:
     finalRead.append(newDate + "," + command)
 
 finalRead.sort()    # this puts the list in order based on EPOCH time
-tempList.append(list(dict.fromkeys(finalRead)))    # this removes dup's from list
+tempList.append(list(OrderedDict.fromkeys(finalRead)))  #  Orders list after removing duplicates
 finalRead = tempList    # sets the final list
 
 count = 0
