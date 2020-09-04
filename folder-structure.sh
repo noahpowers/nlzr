@@ -40,7 +40,9 @@ function client_zip_structure() {
     read -p "[ ] Customer Shortname:  " -r shortname
     path=$( cd ~;pwd )
     cd ~
-    zip -r "${assessmentID}-${shortname}-CLIENT.zip" share/ --exclude "share/Working/*" > /dev/null 2>&1
+    rm "share/.Trash*/files/*"
+    rm "share/.Trash*/info/*"
+    zip -r "${assessmentID}-${shortname}-CLIENT.zip" share/ --exclude "share/Working/*" "share/Documentation/Reports/*" > /dev/null 2>&1
     echo "Your zip file is stored in the path: ${path}"
     exit
 }
@@ -53,6 +55,8 @@ function team_zip_structure() {
     asDate=$(date +"%Y%m%d")
     path=$( cd ~;pwd )
     cd ~
+    rm "share/.Trash*/files/*"
+    rm "share/.Trash*/info/*"
     zip -r "${assessmentID}_${shortname}_${asDate}.zip" share/ > /dev/null 2>&1
     echo "Your zip file is stored in the path: ${path}"
     exit	
