@@ -9,7 +9,7 @@ function client_zip_structure() {
     cd ~
     rm "share/.Trash*/files/*"
     rm "share/.Trash*/info/*"
-    zip -r "${shortname}_${assessmentID}_CLIENT.zip" share/ --exclude "share/Working/*" "share/Licenses/*" "rgen-master" > /dev/null 2>&1
+    zip -r "${shortname}_${assessmentID}_CLIENT.zip" share/ --exclude "share/Working/*" "share/Documentation/Reports/*" "share/Data/Phishing/Payloads/*" "share/Licenses/*" > /dev/null 2>&1
     echo ""
     echo "Your zip file is stored in the path: ${path}"
     exit
