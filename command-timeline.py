@@ -15,7 +15,7 @@ import time
 
 ## reads the "combined" raw history file into script
 ## change the path below...
-file = "</path/to/raw.history/>"
+#file = "</path/to/raw.history/>"
 
 fileread = open(file, 'r')
 
