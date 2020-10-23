@@ -19,6 +19,7 @@ cat <<-EOF > ${userdir}/searchfiletypes.txt
 bat
 com
 cpl
+cs
 dll
 doc
 docm
@@ -45,6 +46,7 @@ vba
 vbs
 war
 xls
+xlsm
 xlsx
 zip
 EOF
