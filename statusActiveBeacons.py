@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 ############################################################################
 ### Written by Noah Powers                                                 #
 ###                                                                        #
@@ -15,8 +16,7 @@ logLocation = '/root/cobaltstrike/logs/'
 
 os.chdir(logLocation)
 
-subprocess.call(query, shell=True)
-
+subprocess.run(query, shell=True)
 
 file = open("roughLogs.txt", "r")
 lines = file.read().split("\n")
@@ -28,7 +28,7 @@ for line in lines:
     list.append(dash)
 file.close()
 
-subprocess.call('rm roughLogs.txt', shell=True)
+subprocess.run('rm roughLogs.txt', shell=True)
 
 interimList = []
 count = 0
@@ -45,16 +45,15 @@ while count < (len(list) - 1):
         interimList.append([date,time,ip,beaconPID])
         count +=1
 
-print ''' 
+print(''' 
 #################################################################################
-  Date     Time          IP              PID
+  Date     Time (UTC)      IP            PID
 ---------------------------------------------------------------------------------
 #################################################################################
-'''
+''')
 
 for item in interimList:
-    print item
+    print(item)
 
-print '''
-
-'''
+print('''
+''')

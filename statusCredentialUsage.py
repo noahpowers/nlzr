@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 ############################################################################
 ### Written by Noah Powers                                                 #
 ###                                                                        #
@@ -9,16 +10,15 @@
 
 import os
 import subprocess
-import time
 from operator import itemgetter
 
 query = 'grep -r -E -i "pth|make_token|steal_token|dcsync|spawnas|runas" | grep -E -iv "task|error|binary|note" | grep -E -i "input" > roughLogs.txt'
 
-logLocation = '/root/cobaltstrike/logs'
+logLocation = '/root/cobaltstrike/logs/'
 
 os.chdir(logLocation)
 
-subprocess.call(query, shell=True)
+subprocess.run(query, shell=True)
 
 file = open("roughLogs.txt", "r")
 lines = file.read().split("\n")
@@ -30,7 +30,7 @@ for line in lines:
     list.append(dash)
 file.close()
 
-subprocess.call('rm roughLogs.txt', shell=True)
+subprocess.run('rm roughLogs.txt', shell=True)
 
 interimList = []
 count = 0
@@ -80,16 +80,15 @@ for item in temp:
         if item not in tempList: 
             tempList.append(item)
 
-print ""
-print ''' 
+print("")
+print(''' 
 ###################################################################################################
    DATE       TIME           IP          BEACON-PID           METHOD                OPERATOR
 --------------------------------------------------------------------------------------------------
 ###################################################################################################
-'''
+''')
 
 for item in tempList:
-    print item
-print '''
-
-'''
+    print(item)
+print('''
+''')

@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 ############################################################################
 ### Written by Noah Powers,                                                #
 ###                                                                        #
@@ -17,20 +18,14 @@ query2 = "grep -r -i 'beacon' | grep -i 'initial beacon from ' | grep -E -v -i '
 query3 = "grep -r -i 'beacon' | grep -i 'initial beacon from ' | grep -E -v -i '(rvauser)' | cut -d' ' -f8-10 | sort | uniq | wc -l"
 
 logLocation = '/root/cobaltstrike/logs/'
+
 os.chdir(logLocation)
 
-print ""
-print 'Total Beacons: '
-subprocess.call(query2, shell=True)
-print 'Total Unique Beacons: '
-subprocess.call(query3, shell=True)
-
-#logLocation = '/root/tools/cobaltstrike/logs'
-
-#os.chdir(logLocation)
-
-subprocess.call(query, shell=True)
-
+a = subprocess.run(query2, stdout=subprocess.PIPE, text=True, shell=True)
+b = subprocess.run(query3, stdout=subprocess.PIPE, text=True, shell=True)
+print('Total Beacons:', (a.stdout).strip('\n'))
+print('Total Unique Beacons:', (b.stdout).strip('\n'))
+subprocess.run(query, shell=True)
 
 file = open("roughLogs.txt", "r")
 lines = file.read().split("\n")
@@ -42,7 +37,7 @@ for line in lines:
     list.append(dash)
 file.close()
 
-subprocess.call('rm roughLogs.txt', shell=True)
+subprocess.run('rm roughLogs.txt', shell=True)
 
 interimList = []
 count = 0
@@ -78,16 +73,15 @@ while count < (len(list) - 1):
     else:
         count += 1
 
-print ''' 
+print('''
 #################################################################################
-  Date     Time      Username            IP              Computer
+  Date     Time (UTC)      Username            IP              Computer
 ---------------------------------------------------------------------------------
 #################################################################################
-'''
+''')
 
 for item in interimList:
-    print item
+    print(item)
 
-print '''
-
-'''
+print('''
+''')

@@ -4,16 +4,15 @@
 ###                                                                        #
 ############################################################################
 ###                                                                        #
-### Returns the status of lateral movement methods.                        #
+### Returns the status of uploaded file hashes.                            #
 ###                                                                        #
 ############################################################################
 
 import os
 import subprocess
-import time
 from operator import itemgetter
 
-query = 'grep -r -E -i "psexec|psexec_psh|wmi|winrm|execute-assembly" | grep -E -iv "WmiPrvSE|servicename|path|abusefunction|get" | grep -i "input" >> roughLogs.txt'
+query = 'grep -r "\[indicator\]" | grep -E -iv "service" >> roughLogs.txt'
 
 logLocation = '/root/cobaltstrike/logs/'
 
@@ -21,6 +20,7 @@ os.chdir(logLocation)
 
 subprocess.run(query, shell=True)
 
+os.system("cat roughLogs.txt")
 file = open("roughLogs.txt", "r")
 lines = file.read().split("\n")
 
@@ -39,28 +39,21 @@ while count < (len(list) - 1):
     if len(list[count]) > 15:
         count += 1
     else:
-## This if/else statement is required to get around how some log entries contain an additional ':' that we must get rid of
-        if ":" in list[count][0]:
-            date  = list[count][0].split(':')[1]
+        fromIP = list[count][1]
+        fileHash = list[count][3].split(' ')[5]
+        temp0 = list[count][3].split(' ')[8]
+        substring = "\\"
+        if substring in temp0:
+            toHost = temp0.split("\\")[2]
+            print(toHost)
         else:
-            date = list[count][0]
-        fromIP= list[count][1]
-        spawnPID_temp = list[count][2].split('.log:')[0]
-        spawnPID = spawnPID_temp.split('_')[1]
-        btime = list[count][3].split(' ')[1]
-#        reason = list[count][2].split('.log:')[1]
-        operator_t0 = list[count][3].split(' ')[4]
-        operator_t1 = operator_t0.split('<')[1]
-        operator = operator_t1.split('>')[0]
-        command0 = list[count][3].split('> ')[1]
-        lengthList = len(list[count]) - 1
-        if lengthList > 4:
-            tempCount = 4
-            while tempCount < lengthList:
-                command0 += list[count][tempCount]
-                tempCount += 1
-        command = command0
-        interimList.append([date,btime,spawnPID,fromIP,command,operator])
+            toHost = "N/A"
+        if substring in temp0:
+            fileName = temp0.split("\\")[4]
+            print(toHost)
+        else:
+            fileName = temp0
+        interimList.append([fromIP,toHost,fileName,fileHash])
         count += 1
 count = 0
 
@@ -68,13 +61,13 @@ count = 0
 tempList = []
 temp = sorted(interimList,key=itemgetter(0,1))
 
-for item in temp: 
-        if item not in tempList: 
+for item in temp:
+        if item not in tempList:
             tempList.append(item)
-print("")
-print(''' 
+print('')
+print('''
 #########################################################################################
-   DATE     TIME       Spawn-PID     FROM-IP            To-HOSTNAME          OPERATOR
+FROM-IP            To-HOSTNAME          File-Name          md5-Hash
 ----------------------------------------------------------------------------------------
 #########################################################################################
 ''')

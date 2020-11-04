@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 ############################################################################
 ### Written by Noah Powers                                                 #
 ###                                                                        #
@@ -20,7 +21,7 @@ logLocation = '/root/cobaltstrike/logs/'
 
 os.chdir(logLocation)
 
-subprocess.call(query, shell=True)
+subprocess.run(query, shell=True)
 
 file = open("roughLogs.txt", "r")
 lines = file.read().split("\n")
@@ -32,7 +33,7 @@ for line in lines:
     list.append(dash)
 file.close()
 
-subprocess.call('rm roughLogs.txt', shell=True)
+subprocess.run('rm roughLogs.txt', shell=True)
 
 interimList = []
 count = 0
@@ -47,16 +48,15 @@ while count < (len(list) - 1):
         interimList.append([date,ip,pid,reason])
         count +=1
 
-print ""
-print ''' 
+print("")
+print(''' 
 ################################################################################
    DTG           IP              PID                Persistence Status
 --------------------------------------------------------------------------------
 ################################################################################
-'''
+''')
 
 for item in interimList:
-    print item
-print '''
-
-'''
+    print(item)
+print('''
+''')
