@@ -11,10 +11,10 @@ asDate=$(date +"%Y%m%d")
 curdir=$(pwd)
 userdir=$( getent passwd "$USER" | cut -d: -f6 )
 
-rm ${userdir}/fileresults.raw &>/dev/null
+rm "${userdir}/fileresults.raw" &>/dev/null
 
 # Setting file types to search for; XLSX and DOCX are for macros.
-cat <<-EOF > ${userdir}/searchfiletypes.txt
+cat <<-EOF > "${userdir}/searchfiletypes.txt"
 bat
 com
 cpl
@@ -50,24 +50,25 @@ xlsx
 zip
 EOF
 
-cd $share_location
-for z in $(cat ${userdir}/searchfiletypes.txt);
+cd "${share_location}" || exit
+for z in $(cat "${userdir}/searchfiletypes.txt");
 do
-    find . -type f -name "*.${z}" >> ${userdir}/fileresults.raw
+    find . -type f -name "*.${z}" >> "${userdir}/fileresults.raw"
 done
 
-echo "FILENAME,MD5,SHA1,SHA256"> ${userdir}/${assessmentID}-FileHashes-${asDate}.csv
-for x in $(cat ${userdir}/fileresults.raw)
-do 
-    f=$(echo ${x} | sed 's|.*/||')          #filename without path
-    m=$(md5sum ${x} | cut -d' ' -f1)        #md5
-    s1=$(sha1sum ${x} | cut -d' ' -f1)      #sha1
-    s256=$(sha256sum ${x} | cut -d' ' -f1)  #sha256
-    echo "${f},${m},${s1},${s256}" >> ${userdir}/${assessmentID}-FileHashes-${asDate}.csv
+echo "FILENAME,MD5,SHA1,SHA256"> "${userdir}/${assessmentID}-FileHashes-${asDate}.csv"
+#for x in $(cat "${userdir}/fileresults.raw")
+cat "${userdir}/fileresults.raw" | while read -r line
+do
+    f=$(echo ${line} | sed 's|.*/||')          #filename without path
+    m=$(md5sum "${line}"| cut -d' ' -f1)        #md5
+    s1=$(sha1sum "${line}"| cut -d' ' -f1)      #sha1
+    s256=$(sha256sum "${line}"| cut -d' ' -f1)  #sha256
+    echo "${f},${m},${s1},${s256}" >> "${userdir}/${assessmentID}-FileHashes-${asDate}.csv"
 done
 rm ${userdir}/searchfiletypes.txt &>/dev/null
 rm ${userdir}/fileresults.raw &>/dev/null
-cd $curdir
+cd $curdir || exit
 
 echo "FINISHED!"
 echo "Your CSV hash file is located here: ${userdir}/${assessmentID}-FileHashes-${asDate}.csv"
