@@ -13,18 +13,6 @@ function install-Sublist3r() {
     echo ""
 }
 
-function install-SimplyEmail() {
-    echo ""
-    dir=$(pwd)
-    cd ~
-    pip install docx2txt pdfminer fake_useragent
-    git clone https://github.com/killswitch-GUI/SimplyEmail
-    cd SimplyEmail
-    bash setup/setup.sh
-    cd $dir
-    echo ""
-}
-
 function gatherDomains() {
     echo ""
     read -p "Enter a domain: " -r name
@@ -39,7 +27,7 @@ function gatherDomains() {
         cd ~
         subdomainFile=$(find -name "subdomains.py")
         cp $subdomainFile $sublist3rLocation 
-        cd $sublist3rLocation
+        cd $sublist3rLocation   
     fi
     path2=$(pwd)
     echo "#,Domain Name,IP Address" > ${dir}/${name}-DomainNames.csv
@@ -91,6 +79,85 @@ function gatherDomains() {
     cd $dir
 }
 
+function verifyIPAddress() {
+    apt-get install -qq -y jq
+    echo ""
+    path=$(pwd)
+    read -p $'Enter the assessment number (e.g., 12345):  \n' -r parentname
+    read -p $'Enter full path file location for IP file (e.g., /root/ips.txt):  \n' -r fileIP
+
+    ## Search for old files and delete if same assessment number
+    cmd0=$(test -f ./${parentname}_VerifyRanges.txt)
+    cmd1=$(echo $?)
+    if [ $cmd1 -eq 0 ]; then
+        rm ${parentname}_Verify*
+    fi
+    rm raw0.txt raw1.txt 2> /dev/null
+
+    ## nmap list scan using forced dns resolution
+    ## curls the web address looking for existence of website
+    ## hoping to observe either elements of the org or elements of another org
+    ## trying to disprove ownership of entire range
+    nmap -sL -R --dns-servers 1.1.1.1,8.8.8.8 -iL $fileIP >> raw0.txt
+    echo "[ ] Searching for web content on hosts"
+    for address in $(cat raw0.txt | cut -d" " -f5 | grep -E -iv "addresses|http"); do
+        simpleSearch=$(curl --connect-timeout 5 -m 3 --no-keepalive --retry 0 -I -s -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.74 Safari/537.36 Edg/79.0.309.43" http://${address})
+        if [[ "$simpleSearch" ]]; then
+            echo "${address}" >> raw1.txt
+            echo " ${address} :: has content "
+        else
+            echo -ne ".."
+        fi
+    done
+    echo "[x] Search finished."
+
+    ## similar to above, but looked at https-only. after testing this was not useful. Still here as a remnant in the event it can be used.
+    # for address in $(cat raw0.txt | cut -d" " -f5 | grep -E -iv "addresses|http"); do
+    #     simpleSearch=$(curl --connect-timeout 5 -m 3 --no-keepalive --retry 0 -I -s -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.74 Safari/537.36 Edg/79.0.309.43" https://${address})
+    #     if [[ "$simpleSearch" ]]; then
+    #         echo "https://${address}" >> raw1.txt
+    #     else
+    #         echo "NOTHING FOUND..."
+    #     fi
+    # done
+
+    ## Similar approach, but nmap does not do dns resolution this time
+    ## Quick searches for who owns the IP addresses
+    cat raw1.txt | sort -u > ${parentname}_VerifyRanges.txt
+    for ipAddr in $(nmap -sL -n -iL ${fileIP} | cut -d" " -f 5 | grep -E -v "addresses|http");do
+        site=$(curl -s ipinfo.io/${ipAddr} | jq '.ip,.org,.hostname,.city,.region,.country')
+        echo $site >> ${parentname}_VerifyLocation.txt
+        echo $site
+        z=$(( $RANDOM % 5 + 1 ))
+        sleep $z    
+    done
+
+    ## checks for aquatone, and if not found, the script downloads it
+    ## then runs aquatone
+    location=$(which aquatone)
+    if [[ "$location" ]]
+        then
+            echo ""
+            echo "Aquatone already installed and linked!"
+            echo ""
+    else
+        echo ""
+        echo "Downloading Aquatone..."
+        wget -O aquatone_linux_amd64_1.7.0.zip https://github.com/michenriksen/aquatone/releases/download/v1.7.0/aquatone_linux_amd64_1.7.0.zip 2> /dev/null
+        unzip aquatone_linux_amd64_1.7.0.zip
+        echo "Creating sym link to aquatone..."
+        ln -s ${path}/aquatone /usr/sbin/aquatone
+        echo "Aquatone is setup!"
+        echo ""
+    fi
+
+    echo "[ ] Running aquatone on discovered web content"
+    cat ${parentname}_VerifyRanges.txt | aquatone
+
+    ## final cleanup
+    rm raw0.txt raw1.txt
+}
+
 function webappHosting() {
     echo ""    
     apt-get install -qq -y jq
@@ -116,21 +183,19 @@ function webappHosting() {
 }
 
 PS3="recon - Pick an option: "
-options=("Install Sublist3r" "Install SimplyEmail" "Find Sub-Domains" "Find Emails" "Find WebApp Host")
+options=("Install Sublist3r" "Find Sub-Domains" "Verify IP Range" "Find WebApp Host")
 select opt in "${options[@]}" "Quit"; do
 
     case "$REPLY" in
-
+            
     #Prep
     1) install-Sublist3r;;
 
-    2) install-SimplyEmail;;
+    2) gatherDomains;;
 
-    3) gatherDomains;;
-
-    4) findEmails;;
+    3) verifyIPAddress;;
     
-    5) webappHosting;;
+    4) webappHosting;;
 
     $(( ${#options[@]}+1 )) ) echo "Goodbye!"; break;;
     *) echo "Invalid option. Try another one.";continue;;
