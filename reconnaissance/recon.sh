@@ -9,6 +9,7 @@ function install-Sublist3r() {
     git clone https://github.com/aboul3la/Sublist3r
     cd Sublist3r/
     pip install -r requirements.txt
+    python -m pip install certifi
     cd $dir
     echo ""
 }
