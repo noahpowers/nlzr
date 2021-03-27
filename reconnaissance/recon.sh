@@ -104,9 +104,11 @@ function verifyIPAddress() {
     for address in $(cat raw0.txt | cut -d" " -f5 | grep -E -iv "addresses|http"); do
         simpleSearch=$(curl --connect-timeout 5 -m 3 --no-keepalive --retry 0 -I -s -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.74 Safari/537.36 Edg/79.0.309.43" http://${address})
         if [[ "$simpleSearch" ]]; then
+            echo "${address}" >> ${parentname}_VerifyReverseDNS.txt
             echo "${address}" >> raw1.txt
             echo " ${address} :: has content "
         else
+            echo "${address}" >> ${parentname}_VerifyReverseDNS.txt
             echo -ne ".."
         fi
     done
