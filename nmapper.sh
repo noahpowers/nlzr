@@ -1,5 +1,11 @@
 #!/bin/bash
 
+#Check to see if we are running with root privileges
+if [[ $EUID -ne 0 ]]; then
+    echo "Please run this script as root" 1>&2
+    exit 1
+fi
+
 function discoveryscan() {
     read -p "Enter your firstname (all lowercase letters):  " -r myname
     read -p "Enter the name/acronymn of your client [e.g. ACME]:  " -r CLIENT
