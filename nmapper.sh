@@ -1,10 +1,16 @@
 #!/bin/bash
 
+#Check to see if we are running with root privileges
+if [[ $EUID -ne 0 ]]; then
+    echo "Please run this script as root" 1>&2
+    exit 1
+fi
+
 function discoveryscan() {
     read -p "Enter your firstname (all lowercase letters):  " -r myname
     read -p "Enter the name/acronymn of your client [e.g. ACME]:  " -r CLIENT
-    read -p "Enter the full path and filename for you targets file [e.g. /root/targs.txt]:  " -r targetlist
-    read -p "Enter the output directory [e.g. /root/]:  " -r outputdir
+    read -p "Enter the full path and filename for you targets file [e.g. /root/targs.txt]:  " -i "" -e targetlist
+    read -p "Enter the output directory [e.g. /root/]:  " -i "" -e outputdir
     mkdir -p $outputdir
     cp $targetlist $outputdir
     cd $outputdir
@@ -28,8 +34,8 @@ function discoveryscan() {
 function fullscan() {
     read -p "Enter your firstname (all lowercase letters):  " -r myname
     read -p "Enter the name/acronymn of your client [e.g. ACME]:  " -r CLIENT
-    read -p "Enter the full path and filename for you targets file [e.g. /root/targs.txt]:  " -r targetlist
-    read -p "Enter the output directory [e.g. /root/]:  " -r outputdir
+    read -p "Enter the full path and filename for you targets file [e.g. /root/targs.txt]:  " -i "" -e targetlist
+    read -p "Enter the output directory [e.g. /root/]:  " -i "" -e outputdir
     mkdir -p $outputdir
     cp $targetlist $outputdir
     cd $outputdir
@@ -54,7 +60,7 @@ function fullscan() {
 function IDSdiscoveryscan() {
     read -p "Enter your firstname (all lowercase letters):  " -r myname
     read -p "Enter the name/acronymn of your client [e.g. ACME]:  " -r CLIENT
-    read -p "Enter the full path and filename for you targets file [e.g. /root/targs.txt]:  " -r targetlist
+    read -p "Enter the full path and filename for you targets file [e.g. /root/targs.txt]:  " -i "" -e targetlist
     cp $targetlist ~
     cd ~
     
@@ -78,7 +84,7 @@ function IDSdiscoveryscan() {
 function IDSfullscan() {
     read -p "Enter your firstname (all lowercase letters):  " -r myname
     read -p "Enter the name/acronymn of your client [e.g. ACME]:  " -r CLIENT
-    read -p "Enter the full path and filename for you targets file [e.g. /root/targs.txt]:  " -r targetlist
+    read -p "Enter the full path and filename for you targets file [e.g. /root/targs.txt]:  " -i "" -e targetlist
     cp $targetlist ~
     cd ~
 
@@ -101,7 +107,7 @@ function IDSfullscan() {
 function udpscan() {
     read -p "Enter your firstname (all lowercase letters):  " -r myname
     read -p "Enter the name/acronymn of your client [e.g. ACME]:  " -r CLIENT
-    read -p "Enter the full path and filename for you targets file [e.g. /root/targs.txt]:  " -r targetlist
+    read -p "Enter the full path and filename for you targets file [e.g. /root/targs.txt]:  " -i "" -e targetlist
     cp $targetlist ~
     cd ~
 
