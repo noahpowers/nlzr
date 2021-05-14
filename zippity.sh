@@ -5,13 +5,15 @@ function client_zip_structure() {
     sleep 2
     read -p "[ ] Customer Shortname:  " -r shortname
     read -p "[ ] Assessment ID and Number:  " -r assessmentID
-    path=$( cd ~;pwd )
-    cd ~
+#    path=$( cd ~;pwd )
+#    cd ~
+    cd /home
     rm "share/.Trash*/files/*"
     rm "share/.Trash*/info/*"
     zip -r "${shortname}_${assessmentID}_CLIENT.zip" share/ --exclude "share/Working/*" "share/Documentation/Reports/*" "share/Data/Phishing/Payloads/*" "share/Licenses/*" > /dev/null 2>&1
     echo ""
-    echo "Your zip file is stored in the path: ${path}"
+#    echo "Your zip file is stored in the path: ${path}"
+    echo "Your zip file is stored in the path: /home"
     exit
 }
 
@@ -21,13 +23,15 @@ function team_zip_structure() {
     read -p "[ ] Customer Shortname:  " -r shortname
     read -p "[ ] Assessment ID and Number:  " -r assessmentID
     asDate=$(date +"%Y%m%d")
-    path=$( cd ~;pwd )
-    cd ~
+#    path=$( cd ~;pwd )
+#    cd ~
+    cd /home
     rm "share/.Trash*/files/*"
     rm "share/.Trash*/info/*"
     zip -r "${shortname}_${assessmentID}_${asDate}.zip" share/ > /dev/null 2>&1
     echo ""
-    echo "Your zip file is stored in the path: ${path}"
+#    echo "Your zip file is stored in the path: ${path}"
+    echo "Your zip file is stored in the path: /home"
     exit	
 }
 
