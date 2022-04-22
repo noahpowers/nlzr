@@ -42,6 +42,7 @@ while count < (len(list) - 1):
         fromIP = list[count][1]
         fileHash = list[count][3].split(' ')[5]
         temp0 = list[count][3].split(' ')[8]
+        location = list[count][3].split(' ')[8]
         substring = "\\"
         if substring in temp0:
             toHost = temp0.split("\\")[2]
@@ -49,11 +50,14 @@ while count < (len(list) - 1):
         else:
             toHost = "N/A"
         if substring in temp0:
-            fileName = temp0.split("\\")[4]
-            print(toHost)
+            try:
+                fileName = temp0.split("\\")[4]
+                print(toHost)
+            except:
+                pass
         else:
             fileName = temp0
-        interimList.append([fromIP,toHost,fileName,fileHash])
+        interimList.append([fromIP,toHost,location,fileName,fileHash])
         count += 1
 count = 0
 
@@ -67,7 +71,7 @@ for item in temp:
 print('')
 print('''
 #########################################################################################
-FROM-IP            To-HOSTNAME          File-Name          md5-Hash
+FROM-IP         To-HOSTNAME        Disk-Location          File-Name          md5-Hash
 ----------------------------------------------------------------------------------------
 #########################################################################################
 ''')
