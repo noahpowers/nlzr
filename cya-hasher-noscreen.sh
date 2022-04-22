@@ -29,6 +29,7 @@ hta
 htm
 html
 inf
+iso
 jar
 key
 lnk
@@ -47,6 +48,7 @@ war
 xls
 xlsm
 xlsx
+xml
 zip
 EOF
 
