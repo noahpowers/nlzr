@@ -16,7 +16,9 @@ rm "${userdir}/*.raw" &>/dev/null
 
 # Setting file types to search for.
 cat <<-EOF > "${userdir}/searchfiletypes.txt"
+b64
 bat
+bin
 com
 cpl
 cs
@@ -35,6 +37,7 @@ jar
 key
 lnk
 msi
+pdf
 ppt
 pptx
 priv
@@ -46,6 +49,7 @@ vb
 vba
 vbs
 war
+xll
 xls
 xlsm
 xlsx
