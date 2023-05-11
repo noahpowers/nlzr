@@ -15,7 +15,9 @@ rm "${userdir}/fileresults.raw" &>/dev/null
 
 # Setting file types to search for; XLSX and DOCX are for macros.
 cat <<-EOF > "${userdir}/searchfiletypes.txt"
+b64
 bat
+bin
 com
 cpl
 cs
@@ -34,6 +36,7 @@ jar
 key
 lnk
 msi
+pdf
 ppt
 pptx
 priv
@@ -45,6 +48,7 @@ vb
 vba
 vbs
 war
+xll
 xls
 xlsm
 xlsx
