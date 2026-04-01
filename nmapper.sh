@@ -17,16 +17,16 @@ function discoveryscan-regular() {
 
     split -n l/10 $targetlist
 
-    screen -S nmapr-01 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-01-DISCOVERY -vvv --open -iL xaa
-    screen -S nmapr-02 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-02-DISCOVERY  -vvv --open -iL xab
-    screen -S nmapr-03 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-03-DISCOVERY  -vvv --open -iL xac
-    screen -S nmapr-04 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-04-DISCOVERY  -vvv --open -iL xad
-    screen -S nmapr-05 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-05-DISCOVERY -vvv --open -iL xae
+    screen -S nmapr-01 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-01-DISCOVERY -vvv --open -iL xaa
+    screen -S nmapr-02 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-02-DISCOVERY  -vvv --open -iL xab
+    screen -S nmapr-03 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-03-DISCOVERY  -vvv --open -iL xac
+    screen -S nmapr-04 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-04-DISCOVERY  -vvv --open -iL xad
+    screen -S nmapr-05 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-05-DISCOVERY -vvv --open -iL xae
     screen -S nmapr-06 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-06-DISCOVERY  -vvv --open -iL xaf
-    screen -S nmapr-07 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-07-DISCOVERY  -vvv --open -iL xag
-    screen -S nmapr-08 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-08-DISCOVERY  -vvv --open -iL xah
-    screen -S nmapr-09 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-09-DISCOVERY  -vvv --open -iL xai
-    screen -S nmapr-10 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-10-DISCOVERY  -vvv --open -iL xaj
+    screen -S nmapr-07 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-07-DISCOVERY  -vvv --open -iL xag
+    screen -S nmapr-08 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-08-DISCOVERY  -vvv --open -iL xah
+    screen -S nmapr-09 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-09-DISCOVERY  -vvv --open -iL xai
+    screen -S nmapr-10 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-10-DISCOVERY  -vvv --open -iL xaj
     top
 }
 
@@ -66,16 +66,16 @@ function discoveryscan-large() {
 
         split -n l/10 $currentFile
 
-        screen -S nmapr-01 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,1433,3268,3269,3306,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$currentFile-$myname-01-DISCOVERY -vvv --open -iL xaa
-        screen -S nmapr-02 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$currentFile-$myname-02-DISCOVERY  -vvv --open -iL xab
-        screen -S nmapr-03 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$currentFile-$myname-03-DISCOVERY  -vvv --open -iL xac
-        screen -S nmapr-04 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$currentFile-$myname-04-DISCOVERY  -vvv --open -iL xad
-        screen -S nmapr-05 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$currentFile-$myname-05-DISCOVERY -vvv --open -iL xae
-        screen -S nmapr-06 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$currentFile-$myname-06-DISCOVERY  -vvv --open -iL xaf
-        screen -S nmapr-07 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$currentFile-$myname-07-DISCOVERY  -vvv --open -iL xag
-        screen -S nmapr-08 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$currentFile-$myname-08-DISCOVERY  -vvv --open -iL xah
-        screen -S nmapr-09 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$currentFile-$myname-09-DISCOVERY  -vvv --open -iL xai
-        screen -S nmapr-10 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$currentFile-$myname-10-DISCOVERY  -vvv --open -iL xaj
+        screen -S nmapr-01 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,1433,3268,3269,3306,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$currentFile-$myname-01-DISCOVERY -vvv --open -iL xaa
+        screen -S nmapr-02 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$currentFile-$myname-02-DISCOVERY  -vvv --open -iL xab
+        screen -S nmapr-03 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$currentFile-$myname-03-DISCOVERY  -vvv --open -iL xac
+        screen -S nmapr-04 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$currentFile-$myname-04-DISCOVERY  -vvv --open -iL xad
+        screen -S nmapr-05 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$currentFile-$myname-05-DISCOVERY -vvv --open -iL xae
+        screen -S nmapr-06 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$currentFile-$myname-06-DISCOVERY  -vvv --open -iL xaf
+        screen -S nmapr-07 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$currentFile-$myname-07-DISCOVERY  -vvv --open -iL xag
+        screen -S nmapr-08 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$currentFile-$myname-08-DISCOVERY  -vvv --open -iL xah
+        screen -S nmapr-09 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$currentFile-$myname-09-DISCOVERY  -vvv --open -iL xai
+        screen -S nmapr-10 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$currentFile-$myname-10-DISCOVERY  -vvv --open -iL xaj
         ((counter++))
         echo "[+] Started scanning:  $currentFile"
     done
@@ -93,16 +93,16 @@ function fullscan() {
 
     split -n l/10 $targetlist
 
-    screen -S nmapr-01 -d -m nmap -Pn -n -sS -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-01-FULL -vvv --open -iL xaa
-    screen -S nmapr-02 -d -m nmap -Pn -n -sS -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-02-FULL  -vvv --open -iL xab
-    screen -S nmapr-03 -d -m nmap -Pn -n -sS -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-03-FULL  -vvv --open -iL xac
-    screen -S nmapr-04 -d -m nmap -Pn -n -sS -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-04-FULL  -vvv --open -iL xad
-    screen -S nmapr-05 -d -m nmap -Pn -n -sS -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-05-FULL  -vvv --open -iL xae
-    screen -S nmapr-06 -d -m nmap -Pn -n -sS -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-06-FULL  -vvv --open -iL xaf
-    screen -S nmapr-07 -d -m nmap -Pn -n -sS -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-07-FULL  -vvv --open -iL xag
-    screen -S nmapr-08 -d -m nmap -Pn -n -sS -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-08-FULL  -vvv --open -iL xah
-    screen -S nmapr-09 -d -m nmap -Pn -n -sS -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-09-FULL  -vvv --open -iL xai
-    screen -S nmapr-10 -d -m nmap -Pn -n -sS -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-10-FULL  -vvv --open -iL xaj
+    screen -S nmapr-01 -d -m nmap -Pn -n -sS -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-01-FULL -vvv --open -iL xaa
+    screen -S nmapr-02 -d -m nmap -Pn -n -sS -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-02-FULL  -vvv --open -iL xab
+    screen -S nmapr-03 -d -m nmap -Pn -n -sS -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-03-FULL  -vvv --open -iL xac
+    screen -S nmapr-04 -d -m nmap -Pn -n -sS -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-04-FULL  -vvv --open -iL xad
+    screen -S nmapr-05 -d -m nmap -Pn -n -sS -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-05-FULL  -vvv --open -iL xae
+    screen -S nmapr-06 -d -m nmap -Pn -n -sS -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-06-FULL  -vvv --open -iL xaf
+    screen -S nmapr-07 -d -m nmap -Pn -n -sS -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-07-FULL  -vvv --open -iL xag
+    screen -S nmapr-08 -d -m nmap -Pn -n -sS -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-08-FULL  -vvv --open -iL xah
+    screen -S nmapr-09 -d -m nmap -Pn -n -sS -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-09-FULL  -vvv --open -iL xai
+    screen -S nmapr-10 -d -m nmap -Pn -n -sS -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-10-FULL  -vvv --open -iL xaj
 
     top
 }
@@ -117,16 +117,16 @@ function IDSdiscoveryscan() {
     
     split -n l/10 $targetlist
     
-    screen -S nmapr-01 -d -m nmap -Pn -n -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-01-DISCOVERY -vvv --open -iL xaa
-    screen -S nmapr-02 -d -m nmap -Pn -n -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-02-DISCOVERY  -vvv --open -iL xab
-    screen -S nmapr-03 -d -m nmap -Pn -n -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-03-DISCOVERY  -vvv --open -iL xac
-    screen -S nmapr-04 -d -m nmap -Pn -n -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-04-DISCOVERY  -vvv --open -iL xad
-    screen -S nmapr-05 -d -m nmap -Pn -n -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-05-DISCOVERY -vvv --open -iL xae
-    screen -S nmapr-06 -d -m nmap -Pn -n -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-06-DISCOVERY  -vvv --open -iL xaf
-    screen -S nmapr-07 -d -m nmap -Pn -n -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-07-DISCOVERY  -vvv --open -iL xag
-    screen -S nmapr-08 -d -m nmap -Pn -n -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-08-DISCOVERY  -vvv --open -iL xah
-    screen -S nmapr-09 -d -m nmap -Pn -n -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-09-DISCOVERY  -vvv --open -iL xai
-    screen -S nmapr-10 -d -m nmap -Pn -n -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-10-DISCOVERY  -vvv --open -iL xaj
+    screen -S nmapr-01 -d -m nmap -Pn -n -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-01-DISCOVERY -vvv --open -iL xaa
+    screen -S nmapr-02 -d -m nmap -Pn -n -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-02-DISCOVERY  -vvv --open -iL xab
+    screen -S nmapr-03 -d -m nmap -Pn -n -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-03-DISCOVERY  -vvv --open -iL xac
+    screen -S nmapr-04 -d -m nmap -Pn -n -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-04-DISCOVERY  -vvv --open -iL xad
+    screen -S nmapr-05 -d -m nmap -Pn -n -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-05-DISCOVERY -vvv --open -iL xae
+    screen -S nmapr-06 -d -m nmap -Pn -n -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-06-DISCOVERY  -vvv --open -iL xaf
+    screen -S nmapr-07 -d -m nmap -Pn -n -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-07-DISCOVERY  -vvv --open -iL xag
+    screen -S nmapr-08 -d -m nmap -Pn -n -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-08-DISCOVERY  -vvv --open -iL xah
+    screen -S nmapr-09 -d -m nmap -Pn -n -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-09-DISCOVERY  -vvv --open -iL xai
+    screen -S nmapr-10 -d -m nmap -Pn -n -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-10-DISCOVERY  -vvv --open -iL xaj
     
     top
 
@@ -141,16 +141,16 @@ function IDSfullscan() {
 
     split -n l/10 $targetlist
 
-    screen -S nmapr-01 -d -m nmap -Pn -n -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-01-FULL -vvv --open -iL xaa
-    screen -S nmapr-02 -d -m nmap -Pn -n -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-02-FULL  -vvv --open -iL xab
-    screen -S nmapr-03 -d -m nmap -Pn -n -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-03-FULL  -vvv --open -iL xac
-    screen -S nmapr-04 -d -m nmap -Pn -n -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-04-FULL  -vvv --open -iL xad
-    screen -S nmapr-05 -d -m nmap -Pn -n -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-05-FULL  -vvv --open -iL xae
-    screen -S nmapr-06 -d -m nmap -Pn -n -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-06-FULL  -vvv --open -iL xaf
-    screen -S nmapr-07 -d -m nmap -Pn -n -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-07-FULL  -vvv --open -iL xag
-    screen -S nmapr-08 -d -m nmap -Pn -n -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-08-FULL  -vvv --open -iL xah
-    screen -S nmapr-09 -d -m nmap -Pn -n -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-09-FULL  -vvv --open -iL xai
-    screen -S nmapr-10 -d -m nmap -Pn -n -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-10-FULL  -vvv --open -iL xaj
+    screen -S nmapr-01 -d -m nmap -Pn -n -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-01-FULL -vvv --open -iL xaa
+    screen -S nmapr-02 -d -m nmap -Pn -n -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-02-FULL  -vvv --open -iL xab
+    screen -S nmapr-03 -d -m nmap -Pn -n -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-03-FULL  -vvv --open -iL xac
+    screen -S nmapr-04 -d -m nmap -Pn -n -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-04-FULL  -vvv --open -iL xad
+    screen -S nmapr-05 -d -m nmap -Pn -n -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-05-FULL  -vvv --open -iL xae
+    screen -S nmapr-06 -d -m nmap -Pn -n -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-06-FULL  -vvv --open -iL xaf
+    screen -S nmapr-07 -d -m nmap -Pn -n -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-07-FULL  -vvv --open -iL xag
+    screen -S nmapr-08 -d -m nmap -Pn -n -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-08-FULL  -vvv --open -iL xah
+    screen -S nmapr-09 -d -m nmap -Pn -n -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-09-FULL  -vvv --open -iL xai
+    screen -S nmapr-10 -d -m nmap -Pn -n -p- --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 500 -oA $CLIENT-$myname-10-FULL  -vvv --open -iL xaj
 
     top
 }
