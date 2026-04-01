@@ -6,7 +6,7 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 
-function discoveryscan() {
+function discoveryscan-regular() {
     read -p "Enter your firstname (all lowercase letters):  " -r myname
     read -p "Enter the name/acronymn of your client [e.g. ACME]:  " -r CLIENT
     read -p "Enter the full path and filename for you targets file [e.g. /root/targs.txt]:  " -i "" -e targetlist
@@ -17,18 +17,69 @@ function discoveryscan() {
 
     split -n l/10 $targetlist
 
-    screen -S nmapr-01 -d -m nmap -Pn -n -sS -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-01-DISCOVERY -vvv --open -iL xaa
-    screen -S nmapr-02 -d -m nmap -Pn -n -sS -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-02-DISCOVERY  -vvv --open -iL xab
-    screen -S nmapr-03 -d -m nmap -Pn -n -sS -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-03-DISCOVERY  -vvv --open -iL xac
-    screen -S nmapr-04 -d -m nmap -Pn -n -sS -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-04-DISCOVERY  -vvv --open -iL xad
-    screen -S nmapr-05 -d -m nmap -Pn -n -sS -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-05-DISCOVERY -vvv --open -iL xae
-    screen -S nmapr-06 -d -m nmap -Pn -n -sS -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-06-DISCOVERY  -vvv --open -iL xaf
-    screen -S nmapr-07 -d -m nmap -Pn -n -sS -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-07-DISCOVERY  -vvv --open -iL xag
-    screen -S nmapr-08 -d -m nmap -Pn -n -sS -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-08-DISCOVERY  -vvv --open -iL xah
-    screen -S nmapr-09 -d -m nmap -Pn -n -sS -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-09-DISCOVERY  -vvv --open -iL xai
-    screen -S nmapr-10 -d -m nmap -Pn -n -sS -p 21-23,25,53,111,137,139,445,80,443,8443,8080 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-10-DISCOVERY  -vvv --open -iL xaj
-
+    screen -S nmapr-01 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-01-DISCOVERY -vvv --open -iL xaa
+    screen -S nmapr-02 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-02-DISCOVERY  -vvv --open -iL xab
+    screen -S nmapr-03 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-03-DISCOVERY  -vvv --open -iL xac
+    screen -S nmapr-04 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-04-DISCOVERY  -vvv --open -iL xad
+    screen -S nmapr-05 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-05-DISCOVERY -vvv --open -iL xae
+    screen -S nmapr-06 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-06-DISCOVERY  -vvv --open -iL xaf
+    screen -S nmapr-07 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-07-DISCOVERY  -vvv --open -iL xag
+    screen -S nmapr-08 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-08-DISCOVERY  -vvv --open -iL xah
+    screen -S nmapr-09 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-09-DISCOVERY  -vvv --open -iL xai
+    screen -S nmapr-10 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$myname-10-DISCOVERY  -vvv --open -iL xaj
     top
+}
+
+function discoveryscan-large() {
+    read -p "Enter your firstname (all lowercase letters):  " -r myname
+    read -p "Enter the name/acronymn of your client [e.g. ACME]:  " -r CLIENT
+    read -p "Enter the full path and filename for you targets file [e.g. /root/targs.txt]:  " -i "" -e targetlist
+    read -p "Enter the output directory [e.g. /root/]:  " -i "" -e outputdir
+    mkdir -p $outputdir
+    cp $targetlist $outputdir
+    cd $outputdir
+
+    split -n l/10 --numeric-suffixes=01 $targetlist file
+
+    counter=1
+    while [ "$counter" -le 10 ]; do
+        file_num=$(printf "%02d" "$counter")
+        currentFile="file${file_num}"
+
+        if [ ! -f "$currentFile" ]; then
+            echo "Warning: $currentFile not found, skipping."
+            ((counter++))
+            continue
+        fi
+
+        while true; do
+            if screen -ls 2>/dev/null | grep -q "No Sockets"; then
+                echo "No screen sessions detected. Processing $currentFile..."
+                break
+            else
+                echo "Screen sessions still active. Waiting 10 minutes..."
+                sleep 600
+            fi
+        done
+
+        rm -f xa[a-j]
+
+        split -n l/10 $currentFile
+
+        screen -S nmapr-01 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,1433,3268,3269,3306,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$currentFile-$myname-01-DISCOVERY -vvv --open -iL xaa
+        screen -S nmapr-02 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$currentFile-$myname-02-DISCOVERY  -vvv --open -iL xab
+        screen -S nmapr-03 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$currentFile-$myname-03-DISCOVERY  -vvv --open -iL xac
+        screen -S nmapr-04 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$currentFile-$myname-04-DISCOVERY  -vvv --open -iL xad
+        screen -S nmapr-05 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$currentFile-$myname-05-DISCOVERY -vvv --open -iL xae
+        screen -S nmapr-06 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$currentFile-$myname-06-DISCOVERY  -vvv --open -iL xaf
+        screen -S nmapr-07 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$currentFile-$myname-07-DISCOVERY  -vvv --open -iL xag
+        screen -S nmapr-08 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$currentFile-$myname-08-DISCOVERY  -vvv --open -iL xah
+        screen -S nmapr-09 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$currentFile-$myname-09-DISCOVERY  -vvv --open -iL xai
+        screen -S nmapr-10 -d -m nmap -Pn -n -sS -p 21-23,25,53,137,139,389,445,636,80,88,443,515,631,3268,3269,8443,8080,9100 --min-hostgroup 255 --min-rtt-timeout 0ms --max-rtt-timeout 100ms --max-retries 1 --max-scan-delay 0 --min-rate 620 -oA $CLIENT-$currentFile-$myname-10-DISCOVERY  -vvv --open -iL xaj
+        ((counter++))
+        echo "[+] Started scanning:  $currentFile"
+    done
+    echo "[+] All Files Processed"
 }
 
 function fullscan() {
@@ -128,21 +179,23 @@ function udpscan() {
 }
 
 PS3="Nmapper Script - Pick an option: "
-options=("Discovery Scan" "Full Port Scan" "IDS Evade Discovery Port" "IDS Evade Full Port" "UDP Scan")
+options=("Discovery Scan (regular)" "Discovery Scan (large)" "Full Port Scan" "IDS Evade Discovery Port" "IDS Evade Full Port" "UDP Scan")
 select opt in "${options[@]}" "Quit"; do
 
     case "$REPLY" in
 
     #Prep
-    1) discoveryscan;;
+    1) discoveryscan-regular;;
 
-    2) fullscan;;
-    
-    3) IDSdiscoveryscan;;
-    
-    4) IDSfullscan;;
+    2) discoveryscan-large;; 
 
-    5) udpscan;;
+    3) fullscan;;
+    
+    4) IDSdiscoveryscan;;
+    
+    5) IDSfullscan;;
+
+    6) udpscan;;
 
     $(( ${#options[@]}+1 )) ) echo "Thanks for using nmapper!"; break;;
     *) echo "Invalid option. Try another one.";continue;;
